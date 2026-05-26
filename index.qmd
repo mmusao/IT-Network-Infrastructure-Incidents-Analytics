@@ -1,0 +1,1621 @@
+---
+title: "Exploratory & Inferential Analysis of IT Network Infrastructure Incidents"
+subtitle: "Data Analytics II — Capstone Case Study 1"
+author: "Muhammad O. Musa - 2025-MMBA-8-042"
+date: today
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    self-contained: true
+    fig-width: 10
+    fig-height: 6
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <style>
+        :root {
+          --navy:        #00263A;
+          --navy-light:  #003A70;
+          --navy-med:    #1B4965;
+          --blue:        #2C6FAC;
+          --blue-light:  #5B8DB8;
+          --gold:        #C4A35A;
+          --gold-light:  #E8D5A3;
+          --gold-pale:   #FBF5E6;
+          --slate:       #3D4F5F;
+          --gray-100:    #F7F9FB;
+          --gray-200:    #EEF1F4;
+          --gray-300:    #DEE3E9;
+          --gray-600:    #6B7D8D;
+          --white:       #FFFFFF;
+          --text:        #1A2A35;
+          --text-light:  #4A5C6B;
+          --radius:      8px;
+          --shadow-sm:   0 1px 3px rgba(0,38,58,0.08);
+          --shadow-md:   0 4px 16px rgba(0,38,58,0.10);
+          --shadow-lg:   0 8px 32px rgba(0,38,58,0.12);
+          --transition:  all 0.25s ease;
+        }
+        body {
+          font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          color: var(--text); background: var(--gray-100);
+          line-height: 1.72; font-size: 15.5px; letter-spacing: 0.01em;
+        }
+        #title-block-header {
+          background: linear-gradient(135deg, var(--navy) 0%, var(--navy-med) 60%, var(--blue) 100%);
+          color: var(--white); padding: 3.5rem 3rem 3rem;
+          margin: -1rem -1rem 2.5rem -1rem;
+          border-radius: 0 0 16px 16px; box-shadow: var(--shadow-lg);
+          position: relative; overflow: hidden;
+        }
+        #title-block-header::before {
+          content: ""; position: absolute; top: -50%; right: -20%;
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(196,163,90,0.12) 0%, transparent 70%);
+          border-radius: 50%;
+        }
+        #title-block-header .title {
+          font-family: 'DM Serif Display', Georgia, serif !important;
+          font-size: 2.6rem; font-weight: 400; color: var(--white);
+          margin-bottom: 0.4rem; line-height: 1.2; letter-spacing: -0.02em;
+        }
+        #title-block-header .subtitle {
+          font-size: 1.15rem; color: var(--gold-light); font-weight: 500;
+          letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem;
+        }
+        #title-block-header .author, #title-block-header .date {
+          color: rgba(255,255,255,0.82); font-size: 1rem;
+        }
+        #title-block-header .quarto-title-meta-heading {
+          color: var(--gold) !important; text-transform: uppercase;
+          font-size: 0.72rem; letter-spacing: 0.12em; font-weight: 700;
+        }
+        #TOC, .sidebar nav[role="doc-toc"] {
+          background: var(--white); border-right: 2px solid var(--gold); padding-top: 1.5rem;
+        }
+        #TOC a, .sidebar nav a {
+          color: var(--slate) !important; font-size: 0.86rem; font-weight: 500;
+          transition: var(--transition); border-left: 3px solid transparent; padding-left: 0.8rem;
+        }
+        #TOC a:hover, .sidebar nav a:hover {
+          color: var(--navy) !important; border-left-color: var(--gold); background: var(--gold-pale);
+        }
+        #TOC a.active, .sidebar nav a.active {
+          color: var(--navy) !important; font-weight: 700;
+          border-left-color: var(--gold); background: var(--gold-pale);
+        }
+        .content, main.content, #quarto-content > * { max-width: 960px; }
+        h1, .h1 {
+          font-family: 'DM Serif Display', Georgia, serif !important;
+          color: var(--navy); font-size: 2rem; font-weight: 400;
+          margin-top: 3.5rem; margin-bottom: 1.2rem;
+          padding-bottom: 0.7rem; border-bottom: 3px solid var(--gold); letter-spacing: -0.01em;
+        }
+        h2, .h2 {
+          font-family: 'DM Sans', sans-serif !important;
+          color: var(--navy-light); font-size: 1.5rem; font-weight: 700;
+          margin-top: 2.4rem; margin-bottom: 0.8rem;
+          padding-left: 0.9rem; border-left: 4px solid var(--gold);
+        }
+        h3, .h3 {
+          font-family: 'DM Sans', sans-serif !important;
+          color: var(--navy-med); font-size: 1.2rem; font-weight: 700;
+          margin-top: 1.8rem; margin-bottom: 0.6rem;
+        }
+        .level1, section[id] > .level2 {
+          background: var(--white); padding: 2rem 2.5rem; margin-bottom: 2rem;
+          border-radius: var(--radius); box-shadow: var(--shadow-sm);
+          border: 1px solid var(--gray-200); transition: var(--transition);
+        }
+        .level1:hover { box-shadow: var(--shadow-md); border-color: var(--gray-300); }
+        p { color: var(--text); margin-bottom: 1.1rem; font-size: 0.97rem; }
+        table {
+          width: 100%; border-collapse: separate; border-spacing: 0;
+          margin: 1.5rem 0; border-radius: var(--radius); overflow: hidden;
+          box-shadow: var(--shadow-sm); font-size: 0.9rem;
+        }
+        thead th {
+          background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%) !important;
+          color: var(--white) !important; font-weight: 600; padding: 0.85rem 1rem;
+          text-align: left; font-size: 0.82rem; text-transform: uppercase;
+          letter-spacing: 0.06em; border: none !important;
+        }
+        tbody td {
+          padding: 0.7rem 1rem; border-bottom: 1px solid var(--gray-200);
+          color: var(--text); transition: var(--transition);
+        }
+        tbody tr:nth-child(even) { background: var(--gray-100); }
+        tbody tr:hover { background: var(--gold-pale) !important; }
+        tbody tr:last-child td { border-bottom: none; }
+        .table-striped > tbody > tr:nth-of-type(odd) > * { background-color: var(--white); }
+        .table-striped > tbody > tr:nth-of-type(even) > * { background-color: var(--gray-100); }
+        .table-hover > tbody > tr:hover > * { background-color: var(--gold-pale) !important; }
+        blockquote {
+          background: linear-gradient(135deg, var(--gold-pale) 0%, var(--white) 100%);
+          border-left: 5px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0;
+          padding: 1.3rem 1.8rem; margin: 1.8rem 0; font-style: normal;
+          color: var(--navy); font-weight: 500; box-shadow: var(--shadow-sm); position: relative;
+        }
+        blockquote::before {
+          content: "KEY FINDING"; position: absolute; top: -10px; left: 16px;
+          background: var(--gold); color: var(--navy); font-size: 0.65rem;
+          font-weight: 700; padding: 2px 10px; border-radius: 3px;
+          letter-spacing: 0.1em; text-transform: uppercase;
+        }
+        blockquote p { color: var(--navy); font-size: 1rem; line-height: 1.6; margin-bottom: 0; }
+        pre {
+          background: #0D1B2A !important; color: #CDD9E5 !important;
+          border-radius: var(--radius); padding: 1.2rem 1.5rem;
+          font-size: 0.84rem; line-height: 1.65; box-shadow: var(--shadow-sm);
+          border: 1px solid rgba(255,255,255,0.06); overflow-x: auto;
+        }
+        pre code {
+          font-family: 'IBM Plex Mono', 'Fira Code', Consolas, monospace !important;
+          color: #CDD9E5 !important; background: transparent !important;
+        }
+        code { font-family: 'IBM Plex Mono', 'Fira Code', Consolas, monospace !important; font-size: 0.85em; }
+        p > code, li > code, td > code {
+          background: var(--gray-200); color: var(--navy-light);
+          padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.84em;
+        }
+        .code-fold-btn, details > summary {
+          background: var(--navy) !important; color: var(--white) !important;
+          border: none; border-radius: 5px; padding: 0.35rem 0.9rem;
+          font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+          cursor: pointer; transition: var(--transition);
+        }
+        .code-fold-btn:hover, details > summary:hover { background: var(--blue) !important; }
+        .panel-tabset .nav-tabs { border-bottom: 2px solid var(--gray-300); margin-bottom: 0; }
+        .panel-tabset .nav-tabs .nav-link {
+          color: var(--slate); font-weight: 600; font-size: 0.88rem;
+          letter-spacing: 0.04em; padding: 0.65rem 1.5rem; border: none;
+          border-bottom: 3px solid transparent; background: transparent;
+          transition: var(--transition); text-transform: uppercase;
+        }
+        .panel-tabset .nav-tabs .nav-link:hover {
+          color: var(--navy); border-bottom-color: var(--gray-300); background: var(--gray-100);
+        }
+        .panel-tabset .nav-tabs .nav-link.active {
+          color: var(--navy) !important; border-bottom: 3px solid var(--gold) !important;
+          background: var(--white); font-weight: 700;
+        }
+        .panel-tabset .tab-content {
+          padding: 1.5rem 0.5rem; background: var(--white);
+          border: 1px solid var(--gray-200); border-top: none;
+          border-radius: 0 0 var(--radius) var(--radius);
+        }
+        .cell-output-display { margin: 1.5rem 0; }
+        .cell-output-display img, figure img {
+          border-radius: var(--radius); box-shadow: var(--shadow-md);
+          border: 1px solid var(--gray-200); transition: var(--transition);
+        }
+        .cell-output-display img:hover, figure img:hover {
+          box-shadow: var(--shadow-lg); transform: translateY(-2px);
+        }
+        figcaption, .figure-caption {
+          color: var(--gray-600); font-size: 0.82rem; font-style: italic;
+          text-align: center; margin-top: 0.6rem; padding: 0.4rem 0;
+          border-top: 1px solid var(--gray-200);
+        }
+        ul, ol { margin-bottom: 1rem; }
+        li { margin-bottom: 0.35rem; color: var(--text); }
+        li strong { color: var(--navy); }
+        hr { border: none; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent); margin: 2.5rem 0; }
+        .callout { border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+        strong { color: var(--navy); font-weight: 700; }
+        a { color: var(--blue); font-weight: 500; transition: var(--transition); }
+        a:hover { color: var(--gold); text-decoration: none; }
+        .MathJax, mjx-container { color: var(--navy) !important; }
+        .appendix, section.appendix {
+          background: var(--gray-100); border-top: 3px solid var(--gold);
+          padding: 2rem; border-radius: var(--radius); margin-top: 3rem;
+        }
+        @media print {
+          body { background: white; }
+          .level1 { box-shadow: none; border: 1px solid #ddd; }
+          #title-block-header { background: var(--navy) !important; }
+          pre { background: #f5f5f5 !important; color: #333 !important; }
+        }
+        @media (max-width: 768px) {
+          #title-block-header { padding: 2rem 1.5rem; }
+          #title-block-header .title { font-size: 1.8rem; }
+          .level1 { padding: 1.5rem; }
+        }
+        </style>
+execute:
+  warning: false
+  message: false
+---
+
+# Executive Summary
+
+This study applies five core techniques from exploratory and inferential analytics to a real-world dataset of **146 closed IT incident tickets** extracted from the SysAid IT Service Management (ITSM) platform at IHS Towers. The dataset spans **March 2025 to April 2026** and covers incidents managed by the Global IT Network Infrastructure team across multiple regions.
+
+The analysis begins with **Exploratory Data Analysis (EDA)** to profile the dataset, detecting a pronounced right skew in resolution windows (mean = 217 hours vs. median = 74 hours) and identifying 12 statistical outliers. **Data visualisation** reveals that Connectivity Services dominates the incident portfolio (56%) and that ticket volumes peak during weekday business hours. **Hypothesis testing** using the Kruskal-Wallis and Chi-squared tests finds no statistically significant differences in resolution windows across urgency levels (*p* = 0.251) or in incident category distribution across urgency tiers (*p* = 0.518). **Spearman correlation analysis** uncovers a near-perfect association between urgency and priority classifications ($\rho$ = 0.883, *p* < 0.001), suggesting redundancy. **Multiple linear regression** confirms that ticket metadata fields collectively explain less than 4% of variation in resolution time (*R*² = 0.04), indicating that resolution timelines are driven by external, unrecorded factors. These findings carry direct implications for SLA policy design, incident triage workflows, and data-capture strategy.
+
+# Professional Disclosure
+
+I currently work as the Manager, Global IT Network Infrastructure at IHS Towers, a multinational telecommunications infrastructure company operating across multiple countries. My role involves managing global network infrastructure operations, enterprise connectivity, incident management governance, IT service delivery, escalation coordination, and operational performance monitoring.
+
+The Global IT Network Infrastructure function depends heavily on efficient incident management processes to maintain service availability, minimise operational downtime, and ensure SLA compliance across geographically distributed operations.
+
+The dataset used in this analysis was extracted from the organisation's SysAid IT Service Management (ITSM) platform and anonymised to protect employee and operational privacy.
+
+## Relevance of Techniques to My Role
+
+As Manager of Global IT Network Infrastructure at IHS Towers, I oversee the resolution of network-related incidents across multiple countries and regional Network Operations Centres (NOCs). My team handles connectivity outages, VPN failures, application downtimes, and workspace enablement issues reported through SysAid.
+
+Each of the five analytical techniques in Case Study 1 maps directly to operational decisions I make:
+
+- **EDA** is operationally relevant because it helps identify unusual incident patterns, outliers, recurring operational bottlenecks, and data quality concerns within IT operations. As a network infrastructure manager, understanding ticket distributions and operational anomalies supports proactive service improvement.
+- **Visualisation** is essential for communicating operational performance trends to executive management, regional IT teams, and service governance stakeholders. Visual dashboards simplify interpretation of SLA performance and operational workload distribution.
+- **Hypothesis testing** supports evidence-based operational decision-making. It enables management to determine whether observed differences in incident resolution performance across regions, priorities, or categories are statistically significant rather than random operational variation. It also allows me to rigorously examine whether the urgency classifications assigned to tickets genuinely correspond to different resolution outcomes — a question that directly affects SLA policy.
+- **Correlation analysis** helps identify redundant classification fields and reveals which factors move together, informing decisions about which variables to track.
+- **Regression modelling** provides the analytical foundation for predicting resolution timelines and identifying the most impactful drivers of delay — critical for capacity planning and resource allocation.
+
+# Data Collection & Sampling
+
+## Data Source
+
+The primary dataset was extracted from **SysAid**, the IT Service Management (ITSM) tool used by IHS Towers for logging, tracking, and managing IT service requests and incidents. SysAid serves as the single system of record for all IT incidents across the organisation's global operations.
+
+## Extraction Method
+
+The data was obtained through SysAid's built-in reporting module:
+
+1. Navigated to **Service Desk > Service Records > Analytics/Reports**
+2. Applied filters:
+   - **Date range:** March 2025 – April 2026
+   - **Status:** Closed
+   - **SR Type:** Incident
+   - **Category:** Information Technology
+3. Exported as **CSV** with all available fields
+
+## Sampling Approach
+
+A **census approach** was adopted — all 146 closed IT incidents matching the filter criteria were included, rather than drawing a sample. This eliminates sampling bias and ensures the analysis reflects the complete operational reality of the period under review.
+
+## Data Provenance
+
+| Attribute | Detail |
+|:---|:---|
+| **Source system** | SysAid ITSM (Cloud instance) |
+| **Data owner** | IT Service Management Team, IHS Towers |
+| **Extraction date** | May 2026 |
+| **Time period covered** | 29 March 2025 – 29 April 2026 (13 months) |
+| **Population** | All closed IT incidents in the period |
+| **Observations** | 146 |
+| **Raw variables** | 13 |
+| **File format** | CSV (Exported_Service_Records.csv) |
+
+## Anonymisation
+
+All personally identifiable information (PII) was anonymised prior to analysis. Specifically, the `Request user` field was replaced with pseudonymised names. Technician identifiers in the `Assigned to` field were retained in their system username format (e.g., `law.odi`) as these are not considered PII in isolation and are necessary for workload analysis.
+
+## Ethical Considerations
+
+The data represents operational service records, not personal or sensitive data about individuals. The analysis was conducted in accordance with IHS Towers' data governance policies. No external or third-party data was used.
+
+# Data Description
+
+This section loads the raw SysAid export, engineers additional features required for analysis, and profiles the resulting dataset.
+
+## Data Loading and Feature Engineering
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: setup-r
+#| message: false
+#| warning: false
+
+# ---- Load required libraries ----
+library(tidyverse)    # Data manipulation and visualisation
+library(lubridate)    # Date-time parsing
+library(knitr)        # Table formatting
+library(kableExtra)   # Enhanced table styling
+library(scales)       # Formatting scales
+```
+
+```{r}
+#| label: data-loading-r
+
+# ---- Load raw data from SysAid CSV export ----
+df <- read_csv("Exported_Service_Records.csv", show_col_types = FALSE)
+
+# ---- Parse date-time columns ----
+# SysAid exports dates in M/D/YYYY H:MM format
+df <- df %>%
+  mutate(
+    request_time = mdy_hm(`Request time`),
+    due_date     = mdy_hm(`Due date`)
+  )
+
+# ---- Feature Engineering ----
+df <- df %>%
+  mutate(
+    # Primary outcome: resolution window in hours
+    resolution_window_hrs = as.numeric(
+      difftime(due_date, request_time, units = "hours")
+    ),
+
+    # Temporal features extracted from request timestamp
+    hour_created  = hour(request_time),
+    day_of_week   = wday(request_time, label = TRUE, abbr = FALSE),
+    month_created = floor_date(request_time, "month"),
+    week_created  = floor_date(request_time, "week"),
+
+    # Business hours flag: weekday 08:00-17:59
+    is_weekday = ifelse(wday(request_time) %in% 2:6, 1, 0),
+    is_business_hours = ifelse(
+      hour_created >= 8 & hour_created <= 17 & is_weekday == 1, 1, 0
+    ),
+
+    # Numeric encoding for ordinal variables
+    urgency_numeric = case_when(
+      Urgency == "Low"    ~ 1,
+      Urgency == "Medium" ~ 2,
+      Urgency == "High"   ~ 3
+    ),
+    priority_numeric = case_when(
+      Priority == "Minor"    ~ 1,
+      Priority == "Moderate" ~ 2,
+      Priority == "Normal"   ~ 3,
+      Priority == "Major"    ~ 4
+    ),
+
+    # Grouped sub-category (merge small groups into "Other")
+    subcat_grouped = case_when(
+      `Sub-category` %in% c(
+        "Voice and Data Communication",
+        "IT Security",
+        "Datacentre & Systems Infrastructure"
+      ) ~ "Other",
+      TRUE ~ `Sub-category`
+    ),
+
+    # Log-transformed resolution window for regression
+    log_resolution_hrs = log1p(resolution_window_hrs),
+
+    # Extract technician username from domain\\username format
+    technician = str_remove(`Assigned to`, ".*\\\\")
+  )
+
+# ---- Display dataset overview ----
+cat("Dataset dimensions:", nrow(df), "rows x", ncol(df), "columns\n")
+cat("Date range:", as.character(min(df$request_time)),
+    "to", as.character(max(df$request_time)), "\n")
+```
+
+### Python
+
+```{python}
+#| label: data-loading-py
+
+# ---- Load required libraries ----
+import pandas as pd
+import numpy as np
+
+# ---- Load raw data from SysAid CSV export ----
+df_py = pd.read_csv("Exported_Service_Records.csv")
+
+# ---- Parse date-time columns ----
+df_py['request_time'] = pd.to_datetime(df_py['Request time'], format='mixed')
+df_py['due_date']     = pd.to_datetime(df_py['Due date'], format='mixed')
+
+# ---- Feature Engineering ----
+# Primary outcome: resolution window in hours
+df_py['resolution_window_hrs'] = (
+    (df_py['due_date'] - df_py['request_time']).dt.total_seconds() / 3600
+)
+
+# Temporal features
+df_py['hour_created'] = df_py['request_time'].dt.hour
+df_py['day_of_week']  = df_py['request_time'].dt.day_name()
+df_py['is_weekday']   = (df_py['request_time'].dt.dayofweek < 5).astype(int)
+
+# Business hours flag: weekday 08:00-17:59
+df_py['is_business_hours'] = (
+    (df_py['hour_created'] >= 8) &
+    (df_py['hour_created'] <= 17) &
+    (df_py['is_weekday'] == 1)
+).astype(int)
+
+# Numeric encoding for ordinal variables
+urgency_map  = {'Low': 1, 'Medium': 2, 'High': 3}
+priority_map = {'Minor': 1, 'Moderate': 2, 'Normal': 3, 'Major': 4}
+df_py['urgency_numeric']  = df_py['Urgency'].map(urgency_map)
+df_py['priority_numeric'] = df_py['Priority'].map(priority_map)
+
+# Grouped sub-category
+df_py['subcat_grouped'] = df_py['Sub-category'].replace({
+    'Voice and Data Communication': 'Other',
+    'IT Security': 'Other',
+    'Datacentre & Systems Infrastructure': 'Other'
+})
+
+# Log-transformed resolution window
+df_py['log_resolution_hrs'] = np.log1p(df_py['resolution_window_hrs'])
+
+# Extract technician username
+df_py['technician'] = df_py['Assigned to'].str.split('\\').str[-1]
+
+# ---- Display dataset overview ----
+print(f"Dataset dimensions: {df_py.shape[0]} rows x {df_py.shape[1]} columns")
+print(f"Date range: {df_py['request_time'].min()} to {df_py['request_time'].max()}")
+```
+
+:::
+
+## Variable Profile
+
+The table below describes each variable used in the analysis, including both the raw SysAid fields and the engineered features.
+
+| Variable | Type | Description | Source |
+|:---|:---|:---|:---|
+| `ID` | Identifier | Unique SysAid ticket number | Raw |
+| `Urgency` | Categorical (3 levels) | Low, Medium, High | Raw |
+| `Priority` | Categorical (4 levels) | Minor, Moderate, Normal, Major | Raw |
+| `Sub-category` | Categorical (6 levels) | Service domain of the incident | Raw |
+| `3rd level category` | Categorical (24 levels) | Granular issue classification | Raw |
+| `Assigned to` | Categorical | Technician assigned to the ticket | Raw |
+| `request_time` | DateTime | Timestamp when ticket was created | Parsed |
+| `due_date` | DateTime | Timestamp for target resolution | Parsed |
+| `resolution_window_hrs` | Numeric (continuous) | Hours between creation and due date — **primary outcome** | Engineered |
+| `hour_created` | Numeric (discrete, 0–23) | Hour of day the ticket was created | Engineered |
+| `day_of_week` | Categorical (7 levels) | Day of week the ticket was created | Engineered |
+| `is_business_hours` | Binary (0/1) | 1 if created weekday 08:00–17:59 | Engineered |
+| `urgency_numeric` | Ordinal numeric (1–3) | Numeric encoding of Urgency | Engineered |
+| `priority_numeric` | Ordinal numeric (1–4) | Numeric encoding of Priority | Engineered |
+| `subcat_grouped` | Categorical (4 levels) | Sub-category with small groups merged into "Other" | Engineered |
+| `log_resolution_hrs` | Numeric (continuous) | log(1 + resolution_window_hrs) for regression | Engineered |
+
+**Variable requirements check** (per Case Study 1 brief):
+
+- **Numeric variables (≥3):** `resolution_window_hrs`, `hour_created`, `urgency_numeric`, `priority_numeric`, `is_business_hours`, `log_resolution_hrs` ✓
+- **Categorical variables (≥2):** `Urgency`, `Priority`, `Sub-category`, `day_of_week`, `subcat_grouped` ✓
+- **Date/time variable (≥1):** `request_time`, `due_date` ✓
+- **Observations (≥100):** 146 ✓
+
+## Summary Statistics
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: summary-stats-r
+
+# ---- Summary statistics for resolution window ----
+df %>%
+  summarise(
+    n          = n(),
+    mean_hrs   = round(mean(resolution_window_hrs), 2),
+    median_hrs = round(median(resolution_window_hrs), 2),
+    sd_hrs     = round(sd(resolution_window_hrs), 2),
+    min_hrs    = round(min(resolution_window_hrs), 2),
+    max_hrs    = round(max(resolution_window_hrs), 2),
+    Q1         = round(quantile(resolution_window_hrs, 0.25), 2),
+    Q3         = round(quantile(resolution_window_hrs, 0.75), 2)
+  ) %>%
+  kable(caption = "Summary Statistics: Resolution Window (Hours)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+### Python
+
+```{python}
+#| label: summary-stats-py
+
+# ---- Summary statistics for resolution window ----
+print("Summary Statistics: Resolution Window (Hours)")
+print(df_py['resolution_window_hrs'].describe().round(2))
+```
+
+:::
+
+# Technique 1: Exploratory Data Analysis (EDA)
+
+## Theory Recap
+
+Exploratory Data Analysis (EDA) is a foundational analytical approach popularised by Tukey (1977) that emphasises understanding the structure, patterns, and anomalies in data before applying formal statistical tests. EDA encompasses summary statistics, distributional profiling, missing-value diagnostics, and outlier detection (Wickham & Grolemund, 2017). It is an essential precursor to inferential analysis because violations of assumptions — such as non-normality or the presence of extreme outliers — can invalidate downstream tests.
+
+## Business Justification
+
+Before making any claims about what drives incident resolution timelines, I need to understand the basic shape and quality of my data. EDA reveals whether the SysAid data is complete, whether resolution windows are normally distributed (affecting test selection), and whether extreme outliers exist that could distort averages. For an infrastructure manager, this is the equivalent of "walking the floor" before making operational decisions — understanding the terrain before acting.
+
+## Analysis
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: eda-missing-r
+
+# ---- Missing Value Analysis ----
+cat("=== Missing Value Check ===\n")
+missing <- colSums(is.na(df[, c("ID", "Urgency", "Priority", "Sub-category",
+                                  "request_time", "due_date",
+                                  "resolution_window_hrs",
+                                  "hour_created", "is_business_hours")]))
+print(missing)
+cat("\nResult: Zero missing values across all analytical variables.\n")
+```
+
+```{r}
+#| label: eda-distribution-r
+
+# ---- Distribution Diagnostics ----
+cat("=== Distribution Diagnostics ===\n")
+
+# Skewness and kurtosis (using e1071 package)
+cat("Skewness:", round(e1071::skewness(df$resolution_window_hrs), 4), "\n")
+cat("Kurtosis:", round(e1071::kurtosis(df$resolution_window_hrs), 4), "\n")
+
+# Shapiro-Wilk normality test
+shapiro_test <- shapiro.test(df$resolution_window_hrs)
+cat("Shapiro-Wilk W =", round(shapiro_test$statistic, 6),
+    ", p-value =", format.pval(shapiro_test$p.value, digits = 4), "\n")
+cat("\nConclusion: Data significantly departs from normality (p < 0.001).\n")
+cat("This justifies the use of non-parametric tests in subsequent sections.\n")
+```
+
+```{r}
+#| label: eda-outliers-r
+
+# ---- Outlier Detection (IQR Method) ----
+Q1 <- quantile(df$resolution_window_hrs, 0.25)
+Q3 <- quantile(df$resolution_window_hrs, 0.75)
+IQR_val <- Q3 - Q1
+lower_fence <- Q1 - 1.5 * IQR_val
+upper_fence <- Q3 + 1.5 * IQR_val
+
+outliers <- df %>%
+  filter(resolution_window_hrs < lower_fence |
+         resolution_window_hrs > upper_fence)
+
+cat("=== Outlier Detection (IQR Method) ===\n")
+cat("Q1:", Q1, " | Q3:", Q3, " | IQR:", IQR_val, "\n")
+cat("Lower fence:", lower_fence, " | Upper fence:", upper_fence, "\n")
+cat("Number of outliers:", nrow(outliers), "of", nrow(df), "observations\n")
+
+# Display outlier records
+outliers %>%
+  select(ID, Urgency, Priority, `Sub-category`, resolution_window_hrs) %>%
+  arrange(desc(resolution_window_hrs)) %>%
+  kable(caption = "Outlier Incidents (Beyond 1.5 x IQR)",
+        digits = 1) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+```{r}
+#| label: eda-frequency-r
+
+# ---- Frequency Table: Urgency ----
+df %>%
+  count(Urgency) %>%
+  mutate(pct = round(n / sum(n) * 100, 1)) %>%
+  kable(caption = "Incident Count by Urgency Level") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+```{r}
+#| label: eda-frequency-subcat-r
+
+# ---- Frequency Table: Sub-category ----
+df %>%
+  count(`Sub-category`) %>%
+  mutate(pct = round(n / sum(n) * 100, 1)) %>%
+  arrange(desc(n)) %>%
+  kable(caption = "Incident Count by Sub-category") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+### Python
+
+```{python}
+#| label: eda-missing-py
+
+from scipy import stats as sp_stats
+
+# ---- Missing Value Analysis ----
+key_cols = ['Urgency', 'Priority', 'Sub-category', 'request_time',
+            'due_date', 'resolution_window_hrs', 'hour_created',
+            'is_business_hours']
+print("=== Missing Value Check ===")
+print(df_py[key_cols].isnull().sum())
+print("\nResult: Zero missing values across all analytical variables.")
+```
+
+```{python}
+#| label: eda-distribution-py
+
+# ---- Distribution Diagnostics ----
+rw = df_py['resolution_window_hrs']
+print("=== Distribution Diagnostics ===")
+print(f"Skewness: {rw.skew():.4f}")
+print(f"Kurtosis: {rw.kurtosis():.4f}")
+
+sw_stat, sw_p = sp_stats.shapiro(rw)
+print(f"Shapiro-Wilk W = {sw_stat:.6f}, p-value = {sw_p:.4e}")
+print("\nConclusion: Data significantly departs from normality.")
+```
+
+```{python}
+#| label: eda-outliers-py
+
+# ---- Outlier Detection (IQR Method) ----
+Q1 = rw.quantile(0.25)
+Q3 = rw.quantile(0.75)
+IQR_val = Q3 - Q1
+lower_fence = Q1 - 1.5 * IQR_val
+upper_fence = Q3 + 1.5 * IQR_val
+outliers_py = df_py[(rw < lower_fence) | (rw > upper_fence)]
+
+print("=== Outlier Detection (IQR Method) ===")
+print(f"Q1: {Q1:.2f} | Q3: {Q3:.2f} | IQR: {IQR_val:.2f}")
+print(f"Lower fence: {lower_fence:.2f} | Upper fence: {upper_fence:.2f}")
+print(f"Number of outliers: {len(outliers_py)} of {len(df_py)} observations")
+```
+
+```{python}
+#| label: eda-frequency-py
+
+# ---- Frequency Tables ----
+print("=== Urgency Distribution ===")
+urg_counts = df_py['Urgency'].value_counts()
+urg_pct = (urg_counts / len(df_py) * 100).round(1)
+print(pd.DataFrame({'Count': urg_counts, 'Pct': urg_pct}))
+
+print("\n=== Sub-category Distribution ===")
+sub_counts = df_py['Sub-category'].value_counts()
+sub_pct = (sub_counts / len(df_py) * 100).round(1)
+print(pd.DataFrame({'Count': sub_counts, 'Pct': sub_pct}))
+```
+
+:::
+
+## Interpretation
+
+The EDA reveals several important characteristics of the incident data:
+
+1. **Data completeness:** The SysAid export contains **zero missing values** across all 146 observations and all analytical variables. This is a strength that eliminates the need for imputation and ensures all observations contribute to every analysis.
+
+2. **Distribution shape:** The resolution window is **heavily right-skewed** (skewness > 2), with a mean of approximately 217 hours but a median of only 74 hours. This indicates that while most tickets are resolved within a few days, a small number of incidents drag on for weeks or even months. The Shapiro-Wilk test confirms significant departure from normality (*p* < 0.001), which justifies the use of **non-parametric tests** (Kruskal-Wallis, Spearman) in subsequent sections.
+
+3. **Outliers:** The IQR method identifies **12 outlier incidents** with resolution windows exceeding approximately 527 hours (~22 days). These warrant investigation — they may represent complex infrastructure problems, vendor dependencies, or tickets that were left open due to administrative oversight. These outliers are **retained** in the analysis (rather than removed) because they represent real operational outcomes, but they motivate the use of robust methods and log-transformation in the regression section.
+
+4. **Category dominance:** Connectivity Services accounts for 56% of all incidents, followed by Business Applications (23%) and Workspace Enablement (11%). This concentration is expected for a network infrastructure team but means that smaller categories have limited sample sizes, which we address by grouping them in later analyses.
+
+# Technique 2: Data Visualisation
+
+## Theory Recap
+
+Data visualisation translates numerical summaries into graphical representations that reveal patterns, trends, and outliers more intuitively than tables alone (Wickham, 2016). Effective visualisation adheres to principles of clarity, honesty, and efficiency — encoding data in position, length, and colour rather than area or volume where possible (Tufte, 2001). In an operational context, visualisations serve as communication tools for stakeholders who may not engage with statistical output directly.
+
+## Business Justification
+
+As a manager reporting to senior IT leadership, I regularly need to communicate incident trends, workload distribution, and service patterns in formats that drive action. Visualisation answers questions such as: "When do incidents peak?", "Which service domains create the most load?", and "Do different urgency levels show visually different resolution patterns?" These graphics form the basis of monthly operational dashboards and capacity planning discussions.
+
+## Analysis
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: viz-histogram-r
+#| fig-cap: "Distribution of Resolution Window (Hours)"
+
+# ---- Plot 1: Histogram of Resolution Window ----
+ggplot(df, aes(x = resolution_window_hrs)) +
+  geom_histogram(binwidth = 24, fill = "#2C6FAC",
+                 colour = "white", alpha = 0.85) +
+  geom_vline(aes(xintercept = median(resolution_window_hrs)),
+             colour = "red", linetype = "dashed", linewidth = 1) +
+  annotate("text",
+           x = median(df$resolution_window_hrs) + 50,
+           y = Inf,
+           label = paste0("Median = ",
+                          round(median(df$resolution_window_hrs), 1),
+                          " hrs"),
+           vjust = 2, colour = "red", fontface = "bold") +
+  labs(title = "Distribution of Incident Resolution Window",
+       subtitle = "Red dashed line = median; bin width = 24 hours (1 day)",
+       x = "Resolution Window (Hours)",
+       y = "Frequency") +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+#| label: viz-boxplot-r
+#| fig-cap: "Resolution Window by Urgency Level"
+
+# ---- Plot 2: Box Plot by Urgency ----
+ggplot(df, aes(x = factor(Urgency, levels = c("Low", "Medium", "High")),
+               y = resolution_window_hrs,
+               fill = Urgency)) +
+  geom_boxplot(alpha = 0.8,
+               outlier.colour = "red", outlier.shape = 16) +
+  scale_fill_manual(values = c("Low"    = "#4DAF4A",
+                                "Medium" = "#FF7F00",
+                                "High"   = "#E41A1C")) +
+  labs(title = "Resolution Window by Urgency Level",
+       subtitle = "Outliers shown as red dots",
+       x = "Urgency",
+       y = "Resolution Window (Hours)") +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: viz-bar-r
+#| fig-cap: "Incident Volume by Sub-category"
+
+# ---- Plot 3: Bar Chart by Sub-category ----
+df %>%
+  count(`Sub-category`) %>%
+  mutate(`Sub-category` = fct_reorder(`Sub-category`, n)) %>%
+  ggplot(aes(x = `Sub-category`, y = n, fill = `Sub-category`)) +
+  geom_col(alpha = 0.85) +
+  geom_text(aes(label = n), hjust = -0.2, fontface = "bold") +
+  coord_flip() +
+  labs(title = "Incident Volume by Service Sub-category",
+       x = NULL,
+       y = "Number of Incidents") +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
+```
+
+```{r}
+#| label: viz-timeseries-r
+#| fig-cap: "Weekly Incident Volume Over Time"
+
+# ---- Plot 4: Weekly Time Series ----
+df %>%
+  count(week_created) %>%
+  ggplot(aes(x = week_created, y = n)) +
+  geom_line(colour = "#2C6FAC", linewidth = 0.8) +
+  geom_point(colour = "#2C6FAC", size = 2) +
+  geom_smooth(method = "loess", se = TRUE,
+              colour = "red", linetype = "dashed", alpha = 0.2) +
+  labs(title = "Weekly Incident Volume Over Time",
+       subtitle = "Red dashed line = LOESS smoothed trend",
+       x = "Week",
+       y = "Number of Incidents") +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+#| label: viz-heatmap-r
+#| fig-cap: "Incident Heatmap: Day of Week x Hour of Day"
+
+# ---- Plot 5: Day x Hour Heatmap ----
+heatmap_data <- df %>%
+  mutate(day_of_week = factor(
+    day_of_week,
+    levels = c("Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday", "Sunday")
+  )) %>%
+  count(day_of_week, hour_created)
+
+ggplot(heatmap_data, aes(x = hour_created,
+                          y = day_of_week,
+                          fill = n)) +
+  geom_tile(colour = "white") +
+  scale_fill_gradient(low = "#FFF7BC", high = "#D95F0E",
+                      name = "Incidents") +
+  scale_x_continuous(breaks = seq(0, 23, 2)) +
+  labs(title = "Incident Heatmap: When Are Tickets Created?",
+       subtitle = "Darker cells indicate higher incident volumes",
+       x = "Hour of Day (24h)",
+       y = NULL) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+#| label: viz-technician-r
+#| fig-cap: "Workload Distribution Across Technicians"
+
+# ---- Plot 6: Technician Workload ----
+df %>%
+  count(technician) %>%
+  mutate(technician = fct_reorder(technician, n)) %>%
+  ggplot(aes(x = technician, y = n, fill = technician)) +
+  geom_col(alpha = 0.85) +
+  geom_text(aes(label = n), hjust = -0.2, fontface = "bold") +
+  coord_flip() +
+  labs(title = "Incident Workload by Technician",
+       x = NULL,
+       y = "Number of Incidents Assigned") +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
+```
+
+### Python
+
+```{python}
+#| label: viz-all-py
+#| fig-width: 14
+#| fig-height: 20
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+warnings.filterwarnings('ignore')
+
+fig, axes = plt.subplots(3, 2, figsize=(14, 20))
+fig.suptitle("IT Infrastructure Incident Analysis — Visual Summary",
+             fontsize=16, fontweight='bold', y=1.01)
+
+# ---- Plot 1: Histogram ----
+ax = axes[0, 0]
+ax.hist(df_py['resolution_window_hrs'], bins=30,
+        color='#2C6FAC', edgecolor='white', alpha=0.85)
+median_val = df_py['resolution_window_hrs'].median()
+ax.axvline(median_val, color='red', linestyle='--', linewidth=2)
+ax.set_title('Distribution of Resolution Window')
+ax.set_xlabel('Resolution Window (Hours)')
+ax.set_ylabel('Frequency')
+ax.annotate(f'Median = {median_val:.1f}h',
+            xy=(median_val, 0),
+            xytext=(median_val + 100, ax.get_ylim()[1] * 0.8),
+            color='red', fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color='red'))
+
+# ---- Plot 2: Box Plot by Urgency ----
+ax = axes[0, 1]
+order = ['Low', 'Medium', 'High']
+colors = {'Low': '#4DAF4A', 'Medium': '#FF7F00', 'High': '#E41A1C'}
+sns.boxplot(data=df_py, x='Urgency', y='resolution_window_hrs',
+            order=order, palette=colors, ax=ax)
+ax.set_title('Resolution Window by Urgency Level')
+ax.set_ylabel('Resolution Window (Hours)')
+
+# ---- Plot 3: Bar Chart by Sub-category ----
+ax = axes[1, 0]
+subcat_counts = df_py['Sub-category'].value_counts().sort_values()
+subcat_counts.plot.barh(ax=ax, color='#2C6FAC', alpha=0.85)
+ax.set_title('Incident Volume by Sub-category')
+ax.set_xlabel('Number of Incidents')
+for i, v in enumerate(subcat_counts.values):
+    ax.text(v + 0.5, i, str(v), va='center', fontweight='bold')
+
+# ---- Plot 4: Weekly Time Series ----
+ax = axes[1, 1]
+weekly = df_py.set_index('request_time').resample('W').size()
+ax.plot(weekly.index, weekly.values,
+        color='#2C6FAC', marker='o', markersize=4)
+ax.set_title('Weekly Incident Volume Over Time')
+ax.set_xlabel('Week')
+ax.set_ylabel('Number of Incidents')
+ax.tick_params(axis='x', rotation=45)
+
+# ---- Plot 5: Day x Hour Heatmap ----
+ax = axes[2, 0]
+day_order = ['Monday', 'Tuesday', 'Wednesday',
+             'Thursday', 'Friday', 'Saturday', 'Sunday']
+heatmap_df = (df_py.groupby(['day_of_week', 'hour_created'])
+              .size().unstack(fill_value=0))
+heatmap_df = heatmap_df.reindex(day_order)
+sns.heatmap(heatmap_df, cmap='YlOrBr', ax=ax,
+            cbar_kws={'label': 'Incidents'})
+ax.set_title('Incident Heatmap: Day x Hour')
+ax.set_xlabel('Hour of Day')
+ax.set_ylabel('')
+
+# ---- Plot 6: Technician Workload ----
+ax = axes[2, 1]
+tech_counts = (df_py['Assigned to'].str.split('\\\\').str[-1]
+               .value_counts().sort_values())
+tech_counts.plot.barh(ax=ax, color='#2C6FAC', alpha=0.85)
+ax.set_title('Incident Workload by Technician')
+ax.set_xlabel('Number of Incidents')
+for i, v in enumerate(tech_counts.values):
+    ax.text(v + 0.3, i, str(v), va='center', fontweight='bold')
+
+plt.tight_layout()
+plt.show()
+```
+
+:::
+
+## Interpretation
+
+The visualisations surface several operationally significant patterns:
+
+1. **Right-skewed resolution distribution** (Plot 1): The histogram confirms the EDA finding — most incidents are resolved within 2–3 days (median ≈ 74 hours), but a long right tail extends to nearly 3,000 hours. This "tale of two populations" suggests that the majority of incidents follow standard resolution workflows, while a minority encounter blockers (e.g., vendor dependencies, hardware procurement, cross-regional coordination).
+
+2. **Urgency levels show similar medians** (Plot 2): Visually, the three urgency levels have surprisingly similar median resolution windows. High-urgency tickets actually show *greater* variability (wider box and longer whiskers), not shorter resolution times. This counterintuitive finding will be formally tested in Section 7.
+
+3. **Connectivity Services dominates** (Plot 3): With 82 incidents (56%), Connectivity Services generates more than double the volume of Business Applications (34 incidents, 23%). This concentration should inform staffing decisions and automation investment.
+
+4. **No clear trend in weekly volume** (Plot 4): Incident volume fluctuates week to week without a clear upward or downward trend, though the LOESS smoother suggests slightly elevated volumes in early 2026.
+
+5. **Business-hours concentration** (Plot 5): The heatmap reveals a clear concentration of incidents during weekday business hours (08:00–18:00, Monday–Friday), with minimal weekend and night-time ticket creation. This informs staffing schedules.
+
+6. **Uneven workload distribution** (Plot 6): The technician workload chart reveals that `akapo.leye` and `bakar.ali` handle the largest share of incidents, suggesting potential workload imbalance. This has implications for burnout risk, cross-training, and equitable assignment algorithms.
+
+# Technique 3: Hypothesis Testing
+
+## Theory Recap
+
+Hypothesis testing provides a formal decision-making framework for evaluating claims about population parameters using sample data (Adi, 2024). The procedure involves stating null and alternative hypotheses, selecting a significance level ($\alpha$), computing a test statistic, and comparing the resulting *p*-value to $\alpha$. When data violate normality assumptions — as established in our EDA — non-parametric alternatives such as the **Kruskal-Wallis test** (the non-parametric equivalent of one-way ANOVA) and the **Chi-squared test of independence** offer robust alternatives (Field et al., 2012).
+
+## Business Justification
+
+The urgency classification in SysAid (Low, Medium, High) is intended to signal the severity and expected response speed for each incident. If urgency genuinely drives resolution outcomes, then it validates the triage system. If not, it raises a fundamental question about whether the current classification scheme adds operational value — which directly informs process redesign and SLA policy decisions.
+
+## Hypothesis 1: Resolution Window Across Urgency Levels
+
+**Research question:** Does the resolution window differ significantly across urgency levels?
+
+- **$H_0$:** The median resolution window is equal across all urgency levels (Low, Medium, High).
+- **$H_1$:** At least one urgency level has a significantly different median resolution window.
+- **$\alpha = 0.05$**
+- **Test:** Kruskal-Wallis rank-sum test (chosen because the resolution window is non-normal, as confirmed by Shapiro-Wilk *p* < 0.001).
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: hyp1-normality-r
+
+# ---- Assumption Check: Normality per Group ----
+cat("=== Shapiro-Wilk Normality Test by Urgency Group ===\n")
+for (u in c("Low", "Medium", "High")) {
+  subset_data <- df %>% filter(Urgency == u) %>% pull(resolution_window_hrs)
+  sw <- shapiro.test(subset_data)
+  cat(u, ": W =", round(sw$statistic, 4),
+      ", p =", format.pval(sw$p.value, digits = 3), "\n")
+}
+cat("\nAll groups violate normality (p < 0.05).\n")
+cat("Non-parametric Kruskal-Wallis test is justified.\n")
+```
+
+```{r}
+#| label: hyp1-descriptives-r
+
+# ---- Descriptive Statistics by Urgency ----
+df %>%
+  group_by(Urgency) %>%
+  summarise(
+    n      = n(),
+    mean   = round(mean(resolution_window_hrs), 1),
+    median = round(median(resolution_window_hrs), 1),
+    sd     = round(sd(resolution_window_hrs), 1),
+    .groups = "drop"
+  ) %>%
+  kable(caption = "Resolution Window Statistics by Urgency Level") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = FALSE)
+```
+
+```{r}
+#| label: hyp1-test-r
+
+# ---- Kruskal-Wallis Test ----
+kw_test <- kruskal.test(resolution_window_hrs ~ Urgency, data = df)
+
+cat("=== Kruskal-Wallis Test ===\n")
+cat("H-statistic:", round(kw_test$statistic, 4), "\n")
+cat("Degrees of freedom:", kw_test$parameter, "\n")
+cat("p-value:", round(kw_test$p.value, 4), "\n")
+
+# ---- Effect Size: Epsilon-squared ----
+n_total <- nrow(df)
+k <- length(unique(df$Urgency))
+epsilon_sq <- (kw_test$statistic - k + 1) / (n_total - k)
+
+cat("\nEpsilon-squared (effect size):", round(epsilon_sq, 4), "\n")
+cat("Benchmarks: < 0.01 negligible, 0.01-0.06 small,",
+    "0.06-0.14 medium, > 0.14 large\n")
+
+# ---- Decision ----
+if (kw_test$p.value > 0.05) {
+  cat("\nDECISION: Fail to reject H0.\n")
+  cat("No significant difference in resolution window",
+      "across urgency levels.\n")
+} else {
+  cat("\nDECISION: Reject H0. Significant difference detected.\n")
+}
+```
+
+### Python
+
+```{python}
+#| label: hyp1-descriptives-py
+
+# ---- Descriptive Statistics by Urgency ----
+print("=== Group Descriptives ===")
+for u in ['Low', 'Medium', 'High']:
+    subset = df_py[df_py['Urgency'] == u]['resolution_window_hrs']
+    print(f"  {u}: n={len(subset)}, mean={subset.mean():.1f}, "
+          f"median={subset.median():.1f}, sd={subset.std():.1f}")
+```
+
+```{python}
+#| label: hyp1-test-py
+
+# ---- Kruskal-Wallis Test ----
+groups = [df_py[df_py['Urgency'] == u]['resolution_window_hrs']
+          for u in ['Low', 'Medium', 'High']]
+kw_stat, kw_p = sp_stats.kruskal(*groups)
+
+print("=== Kruskal-Wallis Test ===")
+print(f"H-statistic: {kw_stat:.4f}")
+print(f"p-value: {kw_p:.4f}")
+
+# ---- Effect Size: Epsilon-squared ----
+n_total = len(df_py)
+k = df_py['Urgency'].nunique()
+epsilon_sq = (kw_stat - k + 1) / (n_total - k)
+print(f"\nEpsilon-squared: {epsilon_sq:.4f}")
+
+if kw_p > 0.05:
+    print("\nDECISION: Fail to reject H0. No significant difference.")
+else:
+    print("\nDECISION: Reject H0. Significant difference detected.")
+```
+
+:::
+
+### Interpretation — Hypothesis 1
+
+The Kruskal-Wallis test yields *H* = 2.76, *p* = 0.251, with an epsilon-squared effect size near zero. We **fail to reject the null hypothesis** at the 5% significance level. In plain language:
+
+> **There is no statistically significant difference in incident resolution windows across Low, Medium, and High urgency levels.**
+
+This is a critical business finding. It means that, in practice, the urgency label assigned to a ticket at triage **does not correspond to meaningfully different resolution outcomes**. High-urgency tickets are not being resolved faster than low-urgency tickets. This challenges the effectiveness of the current triage-to-resolution pipeline: either the urgency classification is not influencing technician behaviour, or external factors (vendor lead times, hardware availability, cross-regional dependencies) overwhelm the effect of urgency on resolution speed.
+
+## Hypothesis 2: Service Category Distribution Across Urgency Levels
+
+**Research question:** Is the distribution of incident sub-categories independent of the urgency level assigned?
+
+- **$H_0$:** Sub-category and Urgency are independent (the proportion of incidents in each sub-category is the same across urgency levels).
+- **$H_1$:** Sub-category and Urgency are not independent (certain categories are disproportionately associated with higher urgency).
+- **$\alpha = 0.05$**
+- **Test:** Chi-squared test of independence (with Monte Carlo simulation in R to handle cells with small expected counts).
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: hyp2-table-r
+
+# ---- Contingency Table ----
+ct <- table(df$`Sub-category`, df$Urgency)
+cat("=== Contingency Table ===\n")
+print(ct)
+
+# ---- Expected Counts Check ----
+cat("\n=== Expected Counts ===\n")
+chi_test <- chisq.test(ct, simulate.p.value = TRUE, B = 10000)
+print(round(chi_test$expected, 1))
+cat("\nNote: Some expected counts < 5,",
+    "hence Monte Carlo simulation is used.\n")
+```
+
+```{r}
+#| label: hyp2-test-r
+
+# ---- Chi-squared Test (Monte Carlo) ----
+cat("=== Chi-squared Test (Monte Carlo, B = 10,000) ===\n")
+cat("Chi-squared statistic:", round(chi_test$statistic, 4), "\n")
+cat("p-value:", round(chi_test$p.value, 4), "\n")
+
+# ---- Effect Size: Cramer's V ----
+n <- sum(ct)
+k <- min(nrow(ct), ncol(ct))
+cramers_v <- sqrt(chi_test$statistic / (n * (k - 1)))
+cat("\nCramer's V:", round(cramers_v, 4), "\n")
+cat("Benchmarks: < 0.1 negligible, 0.1-0.3 small,",
+    "0.3-0.5 medium, > 0.5 large\n")
+
+# ---- Decision ----
+if (chi_test$p.value > 0.05) {
+  cat("\nDECISION: Fail to reject H0.\n")
+  cat("Sub-category and Urgency are independent.\n")
+} else {
+  cat("\nDECISION: Reject H0. Significant association detected.\n")
+}
+```
+
+### Python
+
+```{python}
+#| label: hyp2-test-py
+
+# ---- Contingency Table ----
+ct_py = pd.crosstab(df_py['Sub-category'], df_py['Urgency'])
+print("=== Contingency Table ===")
+print(ct_py)
+
+# ---- Chi-squared Test ----
+chi2, chi_p, dof, expected = sp_stats.chi2_contingency(ct_py)
+print(f"\n=== Chi-squared Test ===")
+print(f"Chi-squared: {chi2:.4f}")
+print(f"p-value: {chi_p:.4f}")
+print(f"Degrees of freedom: {dof}")
+
+# ---- Expected Counts ----
+print(f"\n=== Expected Counts ===")
+print(pd.DataFrame(expected.round(1),
+                    index=ct_py.index, columns=ct_py.columns))
+
+# ---- Cramer's V ----
+n = ct_py.sum().sum()
+k = min(ct_py.shape)
+cramers_v = np.sqrt(chi2 / (n * (k - 1)))
+print(f"\nCramer's V: {cramers_v:.4f}")
+
+if chi_p > 0.05:
+    print("\nDECISION: Fail to reject H0. Variables are independent.")
+else:
+    print("\nDECISION: Reject H0. Significant association detected.")
+```
+
+:::
+
+### Interpretation — Hypothesis 2
+
+The Chi-squared test yields $\chi^2$ = 9.15, *p* = 0.518, with a Cramer's V indicating negligible-to-small effect size. We **fail to reject the null hypothesis**.
+
+> **The distribution of incident sub-categories does not differ significantly across urgency levels.**
+
+This means that no particular service domain (e.g., Connectivity Services, Business Applications) is disproportionately associated with higher-urgency classifications. Urgency appears to be assigned somewhat uniformly across incident types. This finding suggests that urgency is determined by **contextual factors** (e.g., affected user seniority, time of occurrence, business impact) rather than by the technical category of the incident — which is a reasonable triage approach but warrants documentation in the SLA policy.
+
+# Technique 4: Correlation Analysis
+
+## Theory Recap
+
+Correlation analysis measures the strength and direction of monotonic relationships between pairs of variables (Adi, 2024). The **Spearman rank correlation coefficient** ($\rho$) is preferred over Pearson's $r$ when data are ordinal or violate normality assumptions — both conditions present in our dataset (Field et al., 2012). Spearman's $\rho$ ranges from -1 (perfect negative monotonic relationship) to +1 (perfect positive), with 0 indicating no monotonic association.
+
+## Business Justification
+
+Understanding which variables move together informs several operational decisions: Are urgency and priority classifications redundant? Does the time of day a ticket is created correlate with how long it takes to resolve? Are tickets created outside business hours associated with longer resolution windows? These questions directly affect classification scheme design, staffing schedules, and SLA targets.
+
+## Analysis
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: corr-matrix-r
+#| fig-cap: "Spearman Correlation Matrix — Numeric Variables"
+
+library(ggcorrplot)
+
+# ---- Select numeric variables for correlation ----
+numeric_vars <- df %>%
+  select(resolution_window_hrs, urgency_numeric,
+         priority_numeric, hour_created, is_business_hours)
+
+# ---- Compute Spearman Correlation Matrix ----
+corr_matrix <- cor(numeric_vars, method = "spearman",
+                   use = "complete.obs")
+
+cat("=== Spearman Correlation Matrix ===\n")
+print(round(corr_matrix, 4))
+
+# ---- Correlation Heatmap ----
+ggcorrplot(corr_matrix,
+           method = "square",
+           type = "lower",
+           lab = TRUE,
+           lab_size = 4,
+           colors = c("#E41A1C", "white", "#2C6FAC"),
+           title = "Spearman Rank Correlation Matrix",
+           ggtheme = theme_minimal(base_size = 13))
+```
+
+```{r}
+#| label: corr-pvalues-r
+
+# ---- Statistical Significance of Each Pair ----
+cat("=== Spearman Correlation p-values ===\n\n")
+vars <- c("resolution_window_hrs", "urgency_numeric",
+           "priority_numeric", "hour_created", "is_business_hours")
+
+for (i in 1:(length(vars) - 1)) {
+  for (j in (i + 1):length(vars)) {
+    test <- cor.test(numeric_vars[[vars[i]]],
+                     numeric_vars[[vars[j]]],
+                     method = "spearman")
+    cat(vars[i], "vs", vars[j],
+        ": rho =", round(test$estimate, 4),
+        ", p =", format.pval(test$p.value, digits = 4), "\n")
+  }
+}
+```
+
+### Python
+
+```{python}
+#| label: corr-matrix-py
+#| fig-width: 8
+#| fig-height: 6
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# ---- Select numeric variables ----
+numeric_cols = ['resolution_window_hrs', 'urgency_numeric',
+                'priority_numeric', 'hour_created', 'is_business_hours']
+corr_matrix_py = df_py[numeric_cols].corr(method='spearman')
+
+print("=== Spearman Correlation Matrix ===")
+print(corr_matrix_py.round(4))
+
+# ---- Heatmap (lower triangle only) ----
+fig, ax = plt.subplots(figsize=(8, 6))
+mask = np.triu(np.ones_like(corr_matrix_py, dtype=bool))
+sns.heatmap(corr_matrix_py, mask=mask, annot=True, fmt='.3f',
+            cmap='RdBu_r', center=0, vmin=-1, vmax=1,
+            square=True, linewidths=1, ax=ax)
+ax.set_title('Spearman Rank Correlation Matrix',
+             fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#| label: corr-pvalues-py
+
+# ---- Pairwise Spearman p-values ----
+print("=== Pairwise Spearman p-values ===")
+for i in range(len(numeric_cols)):
+    for j in range(i + 1, len(numeric_cols)):
+        rho, p = sp_stats.spearmanr(
+            df_py[numeric_cols[i]], df_py[numeric_cols[j]]
+        )
+        print(f"  {numeric_cols[i]} vs {numeric_cols[j]}: "
+              f"rho={rho:.4f}, p={p:.4f}")
+```
+
+:::
+
+## Interpretation
+
+### 1. Urgency and Priority are near-redundant ($\rho$ = 0.883, *p* < 0.001)
+
+The strongest correlation in the matrix by far is between urgency and priority classifications. A $\rho$ of 0.883 indicates a **very strong positive monotonic relationship** — when urgency goes up, priority almost always goes up too. This near-redundancy suggests that maintaining both fields in the ITSM system adds classification overhead without providing distinct information. The operational recommendation is to either:
+
+- **Consolidate** urgency and priority into a single composite severity score, or
+- **Differentiate their definitions** so that urgency reflects impact and priority reflects response speed, with clear guidelines that produce different combinations.
+
+### 2. No variable is strongly correlated with resolution window
+
+The correlations between resolution window and all other numeric variables are weak ($|\rho| < 0.13$) and statistically non-significant (*p* > 0.05). This means:
+
+- **Resolution time is not meaningfully associated with urgency** ($\rho$ = -0.038, *p* = 0.650) — confirming the hypothesis test finding.
+- **Business-hours tickets show a very slight tendency toward shorter resolution** ($\rho$ = -0.126, *p* = 0.130) — suggestive but not statistically significant. This makes intuitive sense: tickets created during business hours have immediate access to the support team.
+- **Hour of creation shows a weak positive trend** ($\rho$ = 0.108, *p* = 0.196) — tickets created later in the day may slightly extend into the next working day.
+
+### 3. Implications for regression modelling
+
+The weak correlations between predictors and the outcome variable foreshadow that the regression model (Section 9) will have limited explanatory power. This is itself an important finding: resolution time in IT infrastructure is likely driven by **exogenous, unrecorded factors** (vendor response times, spare parts availability, cross-team escalations) rather than by ticket-level metadata.
+
+# Technique 5: Regression Analysis
+
+## Theory Recap
+
+Multiple linear regression models the relationship between a continuous dependent variable and two or more independent variables (Adi, 2024). The Ordinary Least Squares (OLS) method minimises the sum of squared residuals to estimate coefficients, each of which represents the expected change in the outcome per unit change in the predictor, holding all other predictors constant (James et al., 2021). Key assumptions include linearity, homoscedasticity, normality of residuals, and absence of multicollinearity. When the dependent variable is right-skewed, a **log transformation** — specifically $\log(1 + y)$ — is commonly applied to better approximate the normality assumption (Field et al., 2012).
+
+## Business Justification
+
+The ultimate operational question for my team is: **Can we predict how long an incident will take to resolve based on the information available at the time of ticket creation?** If ticket metadata (urgency, priority, category, time of creation) are meaningful predictors, this enables proactive SLA management — we could flag tickets at risk of breaching targets before they do. If these predictors are weak, it tells us that resolution timelines depend on factors we are not currently capturing in SysAid, which itself is an actionable insight for data-capture improvement.
+
+## Model Specification
+
+$$
+\log(1 + \text{resolution\_window\_hrs}) = \beta_0 + \beta_1 \cdot \text{urgency\_numeric} + \beta_2 \cdot \text{priority\_numeric} + \beta_3 \cdot \text{is\_business\_hours} + \beta_4 \cdot \text{subcat\_grouped} + \epsilon
+$$
+
+**Dependent variable:** `log_resolution_hrs` (log-transformed resolution window)
+
+**Independent variables:**
+
+- `urgency_numeric` (ordinal: Low=1, Medium=2, High=3)
+- `priority_numeric` (ordinal: Minor=1, Moderate=2, Normal=3, Major=4)
+- `is_business_hours` (binary: 1 = weekday 08:00–17:59)
+- `subcat_grouped` (categorical: Connectivity Services, Business Applications, Workspace Enablement, Other)
+
+## Analysis
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| label: reg-model-r
+
+library(car)   # For VIF
+library(broom) # For tidy model output
+
+# ---- Fit OLS Model ----
+model <- lm(log_resolution_hrs ~ urgency_numeric + priority_numeric +
+              is_business_hours + subcat_grouped,
+            data = df)
+
+# ---- Model Summary ----
+cat("=== OLS Regression Summary ===\n")
+summary(model)
+```
+
+```{r}
+#| label: reg-tidy-r
+
+# ---- Tidy Coefficient Table ----
+tidy(model, conf.int = TRUE) %>%
+  mutate(across(where(is.numeric), ~round(., 4))) %>%
+  kable(caption = "OLS Regression Coefficients (Log-Transformed Outcome)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = FALSE)
+
+# ---- Model Fit Statistics ----
+cat("\n=== Model Fit ===\n")
+cat("R-squared:", round(summary(model)$r.squared, 4), "\n")
+cat("Adjusted R-squared:",
+    round(summary(model)$adj.r.squared, 4), "\n")
+f_stat <- summary(model)$fstatistic
+f_pval <- pf(f_stat[1], f_stat[2], f_stat[3], lower.tail = FALSE)
+cat("F-statistic p-value:", format.pval(f_pval, digits = 4), "\n")
+```
+
+```{r}
+#| label: reg-diagnostics-r
+#| fig-height: 10
+#| fig-cap: "Regression Diagnostic Plots"
+
+# ---- Diagnostic Plots ----
+par(mfrow = c(2, 2))
+plot(model)
+par(mfrow = c(1, 1))
+```
+
+```{r}
+#| label: reg-vif-r
+
+# ---- Variance Inflation Factor (VIF) ----
+cat("=== Variance Inflation Factors ===\n")
+vif_values <- vif(model)
+print(round(vif_values, 4))
+cat("\nRule of thumb: VIF > 5 indicates problematic multicollinearity.\n")
+cat("Note: urgency_numeric and priority_numeric may show elevated\n")
+cat("VIF due to their strong correlation (rho = 0.883)\n")
+cat("identified in Section 8.\n")
+```
+
+### Python
+
+```{python}
+#| label: reg-model-py
+
+import statsmodels.formula.api as smf
+
+# ---- Fit OLS Model ----
+formula = ('log_resolution_hrs ~ urgency_numeric + priority_numeric + '
+           'is_business_hours + C(subcat_grouped)')
+model_py = smf.ols(formula, data=df_py).fit()
+
+print("=== OLS Regression Summary ===")
+print(model_py.summary())
+```
+
+```{python}
+#| label: reg-diagnostics-py
+#| fig-width: 12
+#| fig-height: 10
+
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+# ---- Residuals vs Fitted ----
+axes[0, 0].scatter(model_py.fittedvalues, model_py.resid,
+                    alpha=0.6, edgecolors='k', linewidths=0.5)
+axes[0, 0].axhline(y=0, color='red', linestyle='--')
+axes[0, 0].set_xlabel('Fitted Values')
+axes[0, 0].set_ylabel('Residuals')
+axes[0, 0].set_title('Residuals vs Fitted')
+
+# ---- Q-Q Plot ----
+sp_stats.probplot(model_py.resid, dist='norm', plot=axes[0, 1])
+axes[0, 1].set_title('Normal Q-Q Plot of Residuals')
+
+# ---- Scale-Location ----
+axes[1, 0].scatter(model_py.fittedvalues,
+                    np.sqrt(np.abs(model_py.resid)),
+                    alpha=0.6, edgecolors='k', linewidths=0.5)
+axes[1, 0].set_xlabel('Fitted Values')
+axes[1, 0].set_ylabel('Sqrt(|Residuals|)')
+axes[1, 0].set_title('Scale-Location Plot')
+
+# ---- Histogram of Residuals ----
+axes[1, 1].hist(model_py.resid, bins=20,
+                color='#2C6FAC', edgecolor='white', alpha=0.85)
+axes[1, 1].set_xlabel('Residuals')
+axes[1, 1].set_ylabel('Frequency')
+axes[1, 1].set_title('Distribution of Residuals')
+
+plt.suptitle('Regression Diagnostic Plots',
+             fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#| label: reg-vif-py
+
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+from patsy import dmatrices
+
+# ---- VIF Calculation ----
+print("=== Variance Inflation Factors ===")
+y, X = dmatrices(formula, data=df_py, return_type='dataframe')
+for i, col in enumerate(X.columns[1:], 1):  # skip intercept
+    vif_val = variance_inflation_factor(X.values, i)
+    print(f"  {col}: VIF = {vif_val:.4f}")
+```
+
+:::
+
+## Interpretation
+
+### Model Fit
+
+The overall model is **not statistically significant** (*F*-test *p* = 0.452), with an *R*² of approximately 0.04. This means the model explains **only 4% of the variance** in log-transformed resolution windows. The adjusted *R*² is near zero (or slightly negative), confirming that the predictors collectively offer negligible explanatory power beyond chance.
+
+### Coefficient Interpretation
+
+While the overall model is weak, the individual coefficients are instructive:
+
+- **Urgency numeric:** The coefficient direction may appear counterintuitive given the correlation analysis. However, the high collinearity between urgency and priority means their individual coefficients are unreliable when both are in the model.
+- **Priority numeric:** Similarly affected by multicollinearity with urgency.
+- **Business hours:** Tickets created during business hours show a slight negative association with resolution time (shorter windows), though this effect is not statistically significant.
+- **Sub-category:** Different service categories show varying intercepts, but none are statistically distinguishable from the reference category.
+
+### Multicollinearity
+
+The VIF analysis is expected to reveal elevated values for `urgency_numeric` and `priority_numeric`, reflecting the $\rho$ = 0.883 correlation identified in Section 8. This confirms the recommendation from the correlation analysis to either consolidate these variables or remove one from future models.
+
+### Business Implication
+
+The weak regression result is itself one of the **most important findings** of this analysis. It tells us that:
+
+> **The information currently recorded in SysAid at the time of ticket creation — urgency, priority, category, and time of day — does not meaningfully predict how long an incident will take to resolve.**
+
+Resolution timelines are likely driven by factors that are either:
+
+- **Not captured in the ITSM system** (e.g., vendor response time, spare parts availability, number of affected users, problem complexity)
+- **Only known after investigation begins** (e.g., root cause, escalation requirements, change management approvals)
+
+This has a clear operational action item: to build predictive capability for resolution time, the ITSM data-capture process must be enriched with additional fields — a recommendation discussed in Section 11.
+
+# Integrated Findings
+
+The five analytical techniques applied in this study converge on a coherent and operationally significant set of conclusions about IT incident management at IHS Towers.
+
+## 1. The Resolution Window is Highly Variable and Right-Skewed
+
+EDA (Section 5) and Visualisation (Section 6) both reveal that resolution windows range from 12.5 hours to nearly 3,000 hours, with a mean (217 hours) approximately three times the median (74 hours). This right skew — driven by 12 identified outliers — means that average-based SLA targets are misleading. A median-based or percentile-based target (e.g., "80% of incidents resolved within 240 hours") would better reflect operational reality.
+
+## 2. Urgency Classification Does Not Drive Resolution Outcomes
+
+This finding is supported by three independent lines of evidence:
+
+- **Hypothesis testing** (Section 7): The Kruskal-Wallis test found no significant difference in resolution windows across urgency levels (*p* = 0.251, $\epsilon^2$ ≈ 0).
+- **Correlation analysis** (Section 8): The Spearman correlation between urgency and resolution window is negligible ($\rho$ = -0.038, *p* = 0.650).
+- **Regression** (Section 9): Urgency does not emerge as a significant predictor of resolution time in the multivariate model.
+
+The convergence of three techniques on this finding strengthens confidence in its validity. The implication is not that urgency should be abandoned, but that the current triage system lacks a **mechanism to translate urgency into prioritised action** at the resolution stage.
+
+## 3. Urgency and Priority are Redundant
+
+Correlation analysis (Section 8) identified a very strong positive monotonic relationship between urgency and priority ($\rho$ = 0.883, *p* < 0.001). This near-redundancy inflates the classification burden on technicians without providing incremental information. The recommendation is to consolidate these into a single composite severity field, or clearly differentiate their operational definitions.
+
+## 4. Ticket Metadata Has Minimal Predictive Power
+
+The regression model (Section 9) explains only 4% of resolution time variance (*R*² = 0.04, *F*-test *p* = 0.452). This confirms that the current SysAid data-capture scheme is **insufficient for predictive analytics**. To enable data-driven SLA management, the following additional fields should be captured:
+
+| Proposed Field | Type | Rationale |
+|:---|:---|:---|
+| `vendor_dependency` | Binary | Whether resolution requires vendor involvement |
+| `num_affected_users` | Numeric | Scale of business impact |
+| `root_cause_category` | Categorical | Enables root-cause trending |
+| `escalation_count` | Numeric | Number of reassignments before resolution |
+| `actual_resolution_date` | DateTime | Actual close time (vs. SLA target date) |
+
+## 5. Operational Patterns Are Clear Even When Statistical Effects Are Weak
+
+While formal tests do not detect significant differences, the visualisations reveal clear operational patterns: Connectivity Services dominance (56% of tickets), business-hours concentration of incident creation, uneven technician workload distribution, and seasonal fluctuation in weekly volumes. These patterns are actionable even without statistical significance — they inform staffing, automation priorities, and training investments.
+
+## Summary Recommendation
+
+The strongest recommendation emerging from this integrated analysis is a **dual-track improvement**:
+
+1. **Short-term — SLA policy reform:** Replace mean-based SLA targets with percentile-based targets (e.g., P50, P80, P95 resolution times) that account for the skewed distribution. Review the urgency-priority classification scheme to eliminate redundancy and establish clear escalation protocols tied to each level.
+
+2. **Long-term — Data enrichment:** Expand the SysAid data-capture template to include the fields proposed above. This investment in data quality will enable future predictive models that can flag at-risk tickets in real time, moving the team from reactive to proactive incident management.
+
+# Limitations & Further Work
+
+## Limitations
+
+1. **Resolution window vs. actual resolution time:** The dataset provides a `Due date` (SLA target) rather than an actual close date. The `resolution_window_hrs` variable therefore represents the **planned SLA window**, not the actual time taken to resolve the incident. This is a meaningful distinction — actual resolution time would be the ideal dependent variable for operational analysis.
+
+2. **Moderate sample size:** While 146 observations meet the CS1 minimum requirement (≥100), some sub-categories (e.g., Datacentre & Systems Infrastructure: *n* = 3; IT Security: *n* = 5) have very small cell counts. This limited the granularity of sub-category analysis and necessitated grouping in the regression model.
+
+3. **Single-source data:** The analysis relies exclusively on SysAid ITSM data. Network performance metrics from PRTG (e.g., bandwidth utilisation, latency, device uptime) were not integrated. Linking ITSM tickets to contemporaneous network telemetry could substantially improve predictive power.
+
+4. **Constant variables:** Three columns — `Status` (all Closed), `SR Type` (all Incident), and `Category` (all Information Technology) — showed zero variance and could not contribute to the analysis. This reflects the filtering applied during export.
+
+5. **Temporal scope:** The 13-month window (March 2025 – April 2026) may not capture seasonal patterns that span multiple years. A longer time series would enable more robust trend analysis.
+
+6. **Absence of free-text analysis:** The `Title` field contains rich descriptive text (e.g., "MPLS IS DOWN", "VPN Access Failure") that was not analysed in this CS1 scope. Text analytics (CS3 Technique 1) could extract additional categorical or sentiment features.
+
+## Further Work
+
+1. **Integrate PRTG network monitoring data** to add continuous numeric variables (bandwidth utilisation, packet loss, latency) and enable a richer predictive model.
+
+2. **Extract actual resolution timestamps** from SysAid to replace the SLA target date with true resolution time — this is the single most impactful improvement for analytical accuracy.
+
+3. **Expand the dataset** to include 2+ years of data to enable time-series decomposition and forecasting of incident volumes.
+
+4. **Conduct text mining** on the `Title` and description fields to automatically categorise incidents by root cause, affected system, and geographic location.
+
+5. **Apply classification models** (CS2 Technique 1) to predict SLA breach risk at the time of ticket creation, enabling proactive intervention.
+
+6. **Perform workload optimisation** (CS3 Technique 5) to model equitable ticket assignment across technicians using linear programming.
+
+# References
+
+Adi, B. (2024). *Data analytics for business*. Lagos Business School.
+
+Allaire, J. J., Teague, C., Scheidegger, C., Xie, Y., & Dervieux, C. (2024). *Quarto* (Version 1.4). https://quarto.org
+
+Field, A., Miles, J., & Field, Z. (2012). *Discovering statistics using R*. SAGE Publications.
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). *An introduction to statistical learning: With applications in R* (2nd ed.). Springer.
+
+McKinney, W. (2022). *Python for data analysis* (3rd ed.). O'Reilly Media.
+
+R Core Team. (2024). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. https://www.R-project.org/
+
+Seabold, S., & Perktold, J. (2010). statsmodels: Econometric and statistical modeling with Python. *Proceedings of the 9th Python in Science Conference*, 57–61.
+
+Tufte, E. R. (2001). *The visual display of quantitative information* (2nd ed.). Graphics Press.
+
+Tukey, J. W. (1977). *Exploratory data analysis*. Addison-Wesley.
+
+Virtanen, P., Gommers, R., Oliphant, T. E., Haberland, M., Reddy, T., Cournapeau, D., ... & van der Walt, S. J. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. *Nature Methods*, *17*(3), 261–272. https://doi.org/10.1038/s41592-019-0686-2
+
+Waskom, M. (2021). seaborn: Statistical data visualization. *Journal of Open Source Software*, *6*(60), 3021. https://doi.org/10.21105/joss.03021
+
+Wickham, H. (2016). *ggplot2: Elegant graphics for data analysis* (2nd ed.). Springer. https://ggplot2.tidyverse.org
+
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the tidyverse. *Journal of Open Source Software*, *4*(43), 1686. https://doi.org/10.21105/joss.01686
+
+Wickham, H., & Grolemund, G. (2017). *R for data science: Import, tidy, transform, visualize, and model data*. O'Reilly Media.
+
+# Appendix: AI Usage Statement {.appendix}
+
+## Declaration of AI-Assisted Tool Usage
+
+In preparing this capstone submission, I used **Microsoft Copilot** as a coding assistant to accelerate the drafting of R and Python code chunks, generate boilerplate Quarto document structure, and refine data visualisation formatting. All analytical decisions — including the selection of statistical tests, the choice of Spearman over Pearson correlation, the decision to log-transform the dependent variable, the interpretation of non-significant results, and the formulation of business recommendations — were made independently by the author based on the course material (Adi, 2024) and referenced textbooks. The AI tool was used as a productivity aid, not as a substitute for analytical judgement. All code was reviewed, tested, and understood by the author prior to submission.

@@ -1,0 +1,147 @@
+﻿ID,Status,Urgency,Request time,Request user,Due date,SR Type,Title,Priority,Category,Sub-category,3rd level category,Assigned to
+522357,Closed,Low,4/29/2026 10:52,Abdullahi Chukwu,5/1/2026 11:52,Incident,ip phone offline ,Minor,Information Technology,Workspace Enablement,Other Incident,IHSTOWERS\law.odi
+522242,Closed,Low,4/29/2026 8:34,Abdullahi Mohammed,5/1/2026 9:34,Incident,DESKPHONE NOT REGISTERING,Minor,Information Technology,Workspace Enablement,Other Request,IHSTOWERS\musa.mora
+522169,Closed,Low,4/28/2026 20:14,Adaobi Perez,4/30/2026 21:14,Incident,Deskphone Registration Issue in NOC,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\law.odi
+521993,Closed,Low,4/28/2026 13:00,Adaobi Taylor,4/30/2026 14:00,Incident,MPLS IS DOWN,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\akapo.leye
+520709,Closed,Low,4/22/2026 13:56,Amelia Johnson,4/24/2026 14:56,Incident,Monitoring tool (Elastic tool) not connecting to the internet,Minor,Information Technology,Business Applications,Application not available,IHSTOWERS\akapo.leye
+520708,Closed,Low,4/22/2026 13:55,Amelia Lee,4/24/2026 14:55,Incident,ELASTIC DOWNTIME,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+520705,Closed,Low,4/22/2026 13:41,Amelia Scott,4/24/2026 14:41,Incident,MTN Imanager Downtime ,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+520704,Closed,Low,4/22/2026 13:41,Amelia Williams,4/30/2026 7:41,Incident,Imanager Downtime,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+519799,Closed,Low,4/17/2026 12:19,Amina Garcia,4/19/2026 13:19,Incident,Unable to connect to IHS Global Wi‑Fi,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\akapo.leye
+515717,Closed,Low,3/30/2026 10:46,Amina Ibrahim,4/1/2026 11:46,Incident,Not able to connect to Managed Engine via VPN ,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+515555,Closed,Low,3/29/2026 0:25,Amina Perez,3/31/2026 1:25,Incident,Internet DownTime,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+515546,Closed,Low,3/28/2026 13:03,Andrew Danjuma,4/3/2026 12:00,Incident,RDS not cpnnecting after authentication,Minor,Information Technology,Business Applications,Application Defect,IHSTOWERS\akapo.leye
+514923,Closed,Medium,3/25/2026 9:33,Andrew Oladipo,3/26/2026 12:33,Incident,Network Outage,Moderate,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+513138,Closed,Low,3/17/2026 6:42,Anthony Abubakar,4/3/2026 9:44,Incident,SBC User not able to access Inala/U2020/NetAct/ENM despite connecting to VPN,Minor,Information Technology,Business Applications,Process Incident,IHSTOWERS\bakar.ali
+513047,Closed,Low,3/16/2026 13:44,Anthony Brown,3/18/2026 14:44,Incident,WebSam not accessible outside IHS network,Minor,Information Technology,Business Applications,Other Incident,IHSTOWERS\akapo.leye
+512992,Closed,Low,3/16/2026 12:36,Anthony Danjuma,3/18/2026 13:36,Incident,Maximum Login Limit,Minor,Information Technology,Connectivity Services,Maximum Login Limit,IHSTOWERS\musa.mora
+512821,Closed,Low,3/16/2026 8:22,Anthony Garcia,3/18/2026 9:22,Incident,UK Users are unable to connect to IHS Global SSID.,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\law.odi
+512553,Closed,Low,3/12/2026 14:26,Anthony Miller,3/20/2026 8:26,Incident,SNOW and Whatsapp Error,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\musa.mora
+511758,Closed,Low,3/10/2026 9:56,Anthony Yakubu,3/12/2026 10:56,Incident,Instability within IAM platform,Minor,Information Technology,Connectivity Services,Network Fluctuation,IHSTOWERS\akapo.leye
+511320,Closed,Low,3/8/2026 23:56,Ava Aliyu,3/11/2026 0:56,Incident,MTN Imanager unreachable in Abuja,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+511319,Closed,Low,3/8/2026 23:48,Ava Baker,3/11/2026 0:48,Incident,ServiceNow unreachable from NOC Network in Abuja,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+510343,Closed,Medium,3/4/2026 13:54,Ava Balogun,3/5/2026 2:24,Incident,Difficulties connecting to MS Outlook,Moderate,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\musa.mora
+509489,Closed,Low,3/2/2026 12:02,Ava Miller,3/4/2026 13:02,Incident,Connectivity Issue on Sophos RED 60,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\bakar.ali
+509312,Closed,Low,3/2/2026 9:59,Benjamin Brown,3/4/2026 10:59,Incident,IHS Global WiFi  UK Service Outage,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\law.odi
+505468,Closed,Low,2/12/2026 17:20,Benjamin Jones,2/18/2026 17:20,Incident,Whitelist leafmap.org website in firewall,Minor,Information Technology,IT Security,Users access restrictions on websites or applications.,IHSTOWERS\caio.blanes
+505323,Closed,Low,2/12/2026 10:52,Bola Abubakar,2/14/2026 11:52,Incident,User Unable to Access ENM & NETACT when connected to VPN,Minor,Information Technology,Business Applications,Other Incident,IHSTOWERS\bakar.ali
+504677,Closed,Low,2/10/2026 9:28,Bola Lewis,2/12/2026 10:28,Incident,Remote connection - Modificaiton Hoast name,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+503250,Closed,High,2/3/2026 14:49,Bola Mohammed,2/5/2026 8:49,Incident,IHS GLOBAL IS UNREACHABLE,Moderate,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\law.odi
+502756,Closed,Medium,2/1/2026 19:59,Bola Young,2/3/2026 20:59,Incident,PRTG Monitoring tool is down,Minor,Information Technology,Connectivity Services,PRTG Support,IHSTOWERS\akapo.leye
+501396,Closed,Medium,1/26/2026 17:11,Caleb Onyeka,1/27/2026 5:41,Incident,Network Fluctuation in IHS Office East Wing Building due to power issue from facilities,Moderate,Information Technology,Connectivity Services,Network Fluctuation,IHSTOWERS\musa.mora
+501363,Closed,Low,1/26/2026 12:52,Caleb Thomas,1/28/2026 13:52,Incident,Inter-Regional Desk Phone Connectivity Issue,Minor,Information Technology,Voice and Data Communication,Cisco Deskphone,IHSTOWERS\law.odi
+501343,Closed,Low,1/26/2026 11:35,Caleb Thompson,1/28/2026 12:35,Incident,Captive portal is not displaying when we try to connect on IHS Guest wifi,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\akapo.leye
+501142,Closed,Low,1/24/2026 6:06,Charlotte Onyeka,1/26/2026 7:06,Incident,Unable to access AD Audit Plus Due To VPN connectivity issue ,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+499538,Closed,Low,1/19/2026 8:58,Charlotte Scott,1/21/2026 9:58,Incident,  Connection Issue,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\musa.mora
+499473,Closed,Medium,1/19/2026 6:32,Charlotte Taylor,1/20/2026 9:32,Incident,Unable to connect to Internet at Lagos Office(East and West Building),Moderate,Information Technology,Datacentre & Systems Infrastructure,Other Incident,IHSTOWERS\musa.mora
+498979,Closed,Low,1/15/2026 14:28,Charlotte Wilson,1/17/2026 15:28,Incident,Unable to reach NG and CAM Server,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\bakar.ali
+497975,Closed,High,1/12/2026 11:06,Chinedu Balogun,1/12/2026 23:36,Incident,Internet link  offline - EPE,Moderate,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+497181,Closed,Low,1/7/2026 7:20,Chinedu Harris,1/14/2026 10:20,Incident,Request for Access to Social Media Platforms for Official Duties,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\musa.mora
+495216,Closed,Low,12/17/2025 8:31,Chinedu Taylor,12/22/2025 8:23,Incident,WHATSAPP ISNT WORKING,Minor,Information Technology,Voice and Data Communication,Other Incident,IHSTOWERS\musa.mora
+495163,Closed,Low,12/17/2025 5:20,Chinedu Thomas,12/19/2025 6:20,Incident,Apps are not working as expected,Minor,Information Technology,Datacentre & Systems Infrastructure,Other Incident,IHSTOWERS\bakar.ali
+494529,Closed,Low,12/12/2025 9:55,Chloe Smith,12/14/2025 10:55,Incident,Internet Service Degradation,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\akapo.leye
+494524,Closed,Medium,12/12/2025 9:40,Christopher Jones,12/13/2025 12:40,Incident,No internet connection at IHS HQ (West wing and Back Building),Moderate,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+493885,Closed,Low,12/9/2025 8:05,Christopher Miller,12/11/2025 9:05,Incident,NETWORK UNAVAILABLE ON BARCO SCREENS,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\bakar.ali
+493247,Closed,Medium,12/3/2025 9:23,David Eze,12/5/2025 10:23,Incident,ZAM-ESXI-01 Server Connectivity Issues,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+493204,Closed,Low,12/3/2025 8:42,David Ibrahim,12/5/2025 9:42,Incident,ABJ-ESXI-01 server connectivity issue,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+492686,Closed,Low,12/1/2025 5:29,David Nwosu,12/3/2025 6:29,Incident,USER ACCOUNT INACTIVE,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\bakar.ali
+491063,Closed,Medium,11/20/2025 14:28,David Yakubu,11/22/2025 15:28,Incident,Loss of connectivity,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\bakar.ali
+490987,Closed,Low,11/20/2025 11:42,Deborah Jones,11/22/2025 12:42,Incident,Nokia CTN Downtime,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\salman.suleiman
+489883,Closed,Low,11/14/2025 14:45,Elijah Johnson,11/17/2025 14:01,Incident,VPN Access Failure,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+487082,Closed,Low,11/5/2025 16:39,Ella Ojo,11/7/2025 17:39,Incident,Intermittent Network Failure on “IHS GLOBAL”,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\bakar.ali
+487072,Closed,Low,11/5/2025 15:29,Emeka Thomas,11/7/2025 16:29,Incident,NO INTERNET ACCESS,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\musa.mora
+487052,Closed,Low,11/5/2025 14:19,Emeka Thompson,11/7/2025 15:19,Incident,Network Downtime,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\law.odi
+487046,Closed,Low,11/5/2025 13:36,Emeka Umar,11/13/2025 7:36,Incident,no internet access,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+486583,Closed,Low,11/3/2025 13:46,Emma Adebayo,11/5/2025 14:46,Incident,AP Issue on Security Floor,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\akapo.leye
+486122,Closed,High,11/1/2025 8:47,Emma Bello,11/5/2025 15:29,Incident,Airtel  iManager and Elastic Downtime ,Moderate,Information Technology,Business Applications,Application Downtime,IHSTOWERS\musa.mora
+486068,Closed,Low,10/31/2025 13:58,Emma Okeke,11/2/2025 14:58,Incident,AIRTEL NMS DOWN,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\musa.mora
+485840,Closed,High,10/30/2025 13:18,Esther Adams,11/4/2025 6:58,Incident,AIRTEL IMANAGER,Moderate,Information Technology,Business Applications,Application Downtime,IHSTOWERS\musa.mora
+485109,Closed,Low,10/29/2025 4:38,Esther Aliyu,11/4/2025 10:58,Incident,Access PoE switch not working,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\musa.mora
+484453,Closed,High,10/25/2025 8:08,Esther Allen,10/27/2025 9:08,Incident,CMS IS DOWN... ,Normal,Information Technology,Business Applications,Other Incident,IHSTOWERS\akapo.leye
+484451,Closed,High,10/25/2025 7:45,Esther Ogunleye,10/27/2025 8:45,Incident,CMS response is very slow,Normal,Information Technology,Business Applications,Application freeze,IHSTOWERS\akapo.leye
+484442,Closed,Low,10/24/2025 23:54,Ethan Adams,10/28/2025 1:24,Incident,Resolved Tenant not picking RCA,Minor,Information Technology,Business Applications,Other Incident,IHSTOWERS\akapo.leye
+484386,Closed,Low,10/24/2025 12:41,Ethan Baker,10/27/2025 14:11,Incident,LOGIN ISSUES,Minor,Information Technology,Business Applications,Application Defect,IHSTOWERS\akapo.leye
+484372,Closed,High,10/24/2025 11:49,Ethan Jones,10/25/2025 0:19,Incident,VPN ZeroTrust not working in LATAM,Major,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\akapo.leye
+484180,Closed,Low,10/24/2025 8:47,Ethan Lewis,10/27/2025 10:17,Incident,NETWORK ISSUE,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\musa.mora
+483915,Closed,High,10/23/2025 10:14,Faith Allen,10/24/2025 13:14,Incident,No Internet on CAMTEL MTN AND ORANGE,Major,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+482906,Closed,Low,10/20/2025 14:04,Faith Clark,10/27/2025 6:32,Incident,Calls dropping,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\law.odi
+482405,Closed,Low,10/17/2025 10:07,Faith Eze,10/20/2025 11:37,Incident,CMS repeatedly unreachable,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+481978,Closed,Low,10/15/2025 18:36,Faith Green,10/24/2025 6:47,Incident,Desk phone malfunction,Minor,Information Technology,Voice and Data Communication,Cisco Deskphone,IHSTOWERS\law.odi
+481969,Closed,Low,10/15/2025 16:46,Fatima Green,10/18/2025 18:16,Incident,Intermittent network failure,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\akapo.leye
+481818,Closed,High,10/14/2025 16:34,Fatima Williams,10/28/2025 11:19,Incident,Incidente #444553 - Fechado indevidamente ,Normal,Information Technology,IT Security,Users access restrictions on websites or applications.,IHSTOWERS\bakar.ali
+481791,Closed,Low,10/14/2025 13:43,Fatima Wright,10/17/2025 15:13,Incident,RJ Office link drops quickly,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\akapo.leye
+478379,Closed,Low,10/6/2025 17:05,Gabriel Bello,10/22/2025 6:30,Incident,Internet slowness and instability,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\akapo.leye
+477945,Closed,Low,10/3/2025 10:43,Gabriel Green,10/15/2025 10:43,Incident,Lagos FTD 2 interfaces disabled ,Minor,Information Technology,Business Applications,Request for access,IHSTOWERS\bakar.ali
+477930,Closed,Low,10/3/2025 9:36,Gabriel Lewis,10/29/2025 13:09,Incident,Google meet connection,Minor,Information Technology,Connectivity Services,Maximum Login Limit,IHSTOWERS\bakar.ali
+477722,Closed,Low,10/2/2025 18:36,Gabriel Nwosu,10/5/2025 20:06,Incident,AnyConnect Zero Trust Enrollment Issue,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+476912,Closed,Low,9/29/2025 13:18,Grace Green,10/2/2025 15:25,Incident,CISCO Extension for Service Desk (9970) is not connecting ,Minor,Information Technology,Connectivity Services,Cisco PRIME,IHSTOWERS\law.odi
+476320,Closed,Low,9/25/2025 10:21,Grace Moore,9/28/2025 11:51,Incident,"LAN, DESPHONE NOT WORKING",Minor,Information Technology,Connectivity Services,Network Fluctuation,IHSTOWERS\musa.mora
+473164,Closed,Medium,9/11/2025 8:15,Grace Okafor,9/14/2025 9:45,Incident,UK Office_Wifi Downtime,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\law.odi
+471259,Closed,Low,9/3/2025 10:29,Halima Allen,10/24/2025 8:16,Incident,Sophos Captive portal not reachable on IHS_Guest wifi in Abuja,Minor,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\musa.mora
+470826,Closed,Low,9/1/2025 18:58,Hannah Clark,10/6/2025 8:14,Incident,New business application may be blocked by the firewall in the Rio office,Minor,Information Technology,Business Applications,Other Incident,IHSTOWERS\bakar.ali
+470664,Closed,Low,9/1/2025 8:09,Hannah Smith,9/4/2025 9:39,Incident,PRTG SCREEN TURNED GREY,Minor,Information Technology,Workspace Enablement,Other Incident,IHSTOWERS\akapo.leye
+470520,Closed,High,8/30/2025 1:46,Hannah Wilson,9/8/2025 9:30,Incident,CMS APPLICATION DOWNTIME,Normal,Information Technology,Business Applications,Application Downtime,IHSTOWERS\musa.mora
+470519,Closed,High,8/30/2025 0:47,Ibrahim Garcia,9/8/2025 9:30,Incident,CMS is currently down,Normal,Information Technology,Business Applications,Application freeze,IHSTOWERS\musa.mora
+470517,Closed,High,8/30/2025 0:36,Ifeoma Aliyu,9/1/2025 1:36,Incident,CMS Web Application not accessible,Normal,Information Technology,Business Applications,Application Downtime,IHSTOWERS\musa.mora
+470453,Closed,Low,8/29/2025 14:27,Ifeoma Johnson,9/10/2025 14:27,Incident,Internet downtime in enugu office,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+468709,Closed,Low,8/25/2025 18:16,Ifeoma Jones,9/9/2025 13:38,Incident,MTN E1 LINK (VOICE) DOWNTIME IN ABUJA,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\law.odi
+467104,Closed,Low,8/19/2025 16:55,Isaac Adams,8/22/2025 18:25,Incident,Blocked website used for Monitoring,Minor,Information Technology,IT Security,Users access restrictions on websites or applications.,IHSTOWERS\bakar.ali
+466463,Closed,Low,8/17/2025 3:20,Isaac Martin,9/26/2025 15:29,Incident,Desk Phone Issue,Minor,Information Technology,Voice and Data Communication,Cisco Deskphone,IHSTOWERS\law.odi
+466364,Closed,Low,8/15/2025 14:17,Isaac Umar,8/18/2025 15:47,Incident,NETWORK ISSUE RIO X SAO PAULO,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\caio.blanes
+465481,Closed,Low,8/12/2025 13:16,Isabella Allen,8/15/2025 14:46,Incident,Maximum Login limit,Minor,Information Technology,Workspace Enablement,User Account Locked,IHSTOWERS\bakar.ali
+465072,Closed,Low,8/11/2025 10:47,Isabella Lee,8/14/2025 12:17,Incident,VPN bravpn.ihstowers.com não está conectando,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\akapo.leye
+464933,Closed,Low,8/11/2025 5:42,James Jones,8/20/2025 15:30,Incident,CMS Downtime,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+464930,Closed,Medium,8/10/2025 22:00,James Williams,8/14/2025 0:00,Incident,Cms Currently Down,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+464925,Closed,Low,8/10/2025 18:55,John Aliyu,8/20/2025 15:30,Incident,CMS Application Unreachable on Web Portal (Lagos and Abuja),Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+464863,Closed,Low,8/8/2025 19:45,John Martin,9/8/2025 12:34,Incident,Cisco não completa a conexão com o bravpn do celular,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+464842,Closed,High,8/8/2025 15:07,Joseph Nwosu,8/12/2025 9:07,Incident,Unplanned Service Outage – Virtual Private Network (VPN),Major,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+464601,Closed,High,8/8/2025 9:15,Joshua Jackson,9/8/2025 15:34,Incident,Account locked issue,Normal,Information Technology,Workspace Enablement,User Account Locked,IHSTOWERS\musa.mora
+464316,Closed,Low,8/7/2025 9:55,Joshua Umar,9/2/2025 9:05,Incident,Wifi Get Disconnected Intermittently ,Minor,Information Technology,Connectivity Services,Wifi Disabled,IHSTOWERS\akapo.leye
+464074,Closed,Low,8/6/2025 12:07,Joy Jackson,8/9/2025 13:37,Incident,RIO NETWORK OFFICE ISSUE,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\akapo.leye
+464070,Closed,Low,8/6/2025 11:56,Kemi Adams,8/18/2025 11:56,Incident,Netwrk downtime in Enugu,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\akapo.leye
+463831,Closed,Medium,8/5/2025 20:58,Kemi Lee,8/15/2025 15:30,Incident,Difficulties In Accessing VPN,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+463304,Closed,High,8/3/2025 16:53,Kemi Young,8/11/2025 9:30,Incident,Access switch went down during UPS maintenance and failed to come back,Normal,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\law.odi
+463275,Closed,Low,8/2/2025 21:37,Khadija Clark,8/7/2025 14:24,Incident,Desk phones Unable to call specific numbers,Minor,Information Technology,Voice and Data Communication,Cisco Deskphone,IHSTOWERS\law.odi
+462952,Closed,Low,8/1/2025 8:27,Khadija Green,8/13/2025 8:27,Incident,Zambia/Nigeria Tunnel Down,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+461577,Closed,Low,7/28/2025 12:21,Kunle Harris,8/7/2025 12:21,Incident,Network Downtime Experienced,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\law.odi
+461265,Closed,Low,7/28/2025 4:29,Lily Nwosu,7/31/2025 5:59,Incident,"Coinnections Fluctuation - AM, Netwin, FFone",Minor,Information Technology,Connectivity Services,Network Fluctuation,IHSTOWERS\akapo.leye
+460778,Closed,Low,7/24/2025 12:50,Lily Onyeka,9/23/2025 7:22,Incident,UKVPN Not Working,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+460158,Closed,Low,7/22/2025 15:01,Lily White,8/1/2025 15:01,Incident,Impossible to reach AD Server,Minor,Information Technology,Datacentre & Systems Infrastructure,Other Incident,IHSTOWERS\bakar.ali
+458510,Closed,High,7/17/2025 16:36,Maryam Abubakar,8/11/2025 7:34,Incident,Network failure at the Rio de Janeiro office,Normal,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\akapo.leye
+458404,Closed,Low,7/17/2025 10:43,Maryam Adeyemi,7/29/2025 10:43,Incident,Faulty Desk Phone Receiver,Minor,Information Technology,Workspace Enablement,Damaged,IHSTOWERS\law.odi
+458399,Closed,Low,7/17/2025 10:25,Maryam Chukwu,7/29/2025 10:25,Incident,Faulty desk phone receiver (Cluster 3),Minor,Information Technology,Workspace Enablement,Damaged,IHSTOWERS\law.odi
+456369,Closed,Low,7/10/2025 10:04,Maryam Ibrahim,7/13/2025 11:34,Incident,Request to whitelist url,Minor,Information Technology,IT Security,Other Incident,IHSTOWERS\bakar.ali
+456327,Closed,Low,7/10/2025 8:37,Maryam Miller,7/22/2025 8:37,Incident,VPN Down,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\akapo.leye
+456319,Closed,Medium,7/10/2025 8:14,Matthew Abubakar,7/23/2025 11:20,Incident,Unable to Connect to VPN,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+456300,Closed,Low,7/10/2025 6:51,Matthew Bello,7/14/2025 3:38,Incident,Failed access to webportal,Minor,Information Technology,Business Applications,Login Failed,IHSTOWERS\akapo.leye
+455805,Closed,High,7/8/2025 8:17,Mia Ibrahim,7/28/2025 15:15,Incident,Network connectivity issue from Lagos to Enugu,Normal,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+455523,Closed,Low,7/7/2025 11:19,Mia Okeke,7/16/2025 13:19,Incident,ServiceNow Slowness in Abuja NOC,Minor,Information Technology,Business Applications,Application Defect,IHSTOWERS\akapo.leye
+455371,Closed,High,7/6/2025 14:00,Michael Allen,7/15/2025 13:08,Incident,Desk phones Unable to call specific numbers,Normal,Information Technology,Voice and Data Communication,Cisco Deskphone,IHSTOWERS\law.odi
+455265,Closed,Medium,7/4/2025 14:40,Michael Bello,7/7/2025 16:10,Incident,Office RJ Link Failure,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\akapo.leye
+453869,Closed,Low,6/27/2025 8:29,Michael Chukwu,7/9/2025 10:59,Incident,Demande d'autorisation,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\bakar.ali
+453351,Closed,Medium,6/25/2025 9:35,Michael Thompson,7/7/2025 9:35,Incident,Network Fluctuation on Wi-fi,Minor,Information Technology,Connectivity Services,Network Fluctuation,IHSTOWERS\akapo.leye
+453230,Closed,Low,6/24/2025 14:01,Musa Yakubu,7/4/2025 14:01,Incident,HELP TO UNLOCK ACCESS TO ASSET TRACKING WEBSITE,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\bakar.ali
+452889,Closed,Medium,6/23/2025 11:13,Nathan Moore,7/3/2025 11:13,Incident,DUO issue - No authentication message,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\bakar.ali
+452768,Closed,Medium,6/22/2025 19:17,Nathan Okafor,7/2/2025 6:00,Incident,Service Now Down,Minor,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+452747,Closed,Low,6/22/2025 17:04,Ngozi Allen,7/2/2025 15:30,Incident,Abuja Internet downtime,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\akapo.leye
+452623,Closed,Medium,6/20/2025 17:42,Ngozi Balogun,6/30/2025 9:30,Incident,ServiceNow Downtime in Abuja,Normal,Information Technology,Business Applications,Application Downtime,IHSTOWERS\akapo.leye
+452356,Closed,Low,6/19/2025 11:56,Samuel Mohammed,7/4/2025 9:29,Incident,DUO Mobile has stopped working,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\akapo.leye
+451937,Closed,High,6/17/2025 12:42,Sarah Ibrahim,6/25/2025 6:42,Incident,SNOW is not responding,Normal,Information Technology,Workspace Enablement,Other Incident,IHSTOWERS\akapo.leye
+451708,Closed,Low,6/16/2025 18:18,Seyi Ojo,6/26/2025 15:30,Incident,maximum login issue-ihsguest01867,Minor,Information Technology,Connectivity Services,Maximum Login Limit,IHSTOWERS\musa.mora
+451665,Closed,Low,6/16/2025 14:32,Seyi Taylor,6/26/2025 14:32,Incident,Abuja MTN Secondary Internet Link Service outage,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+451488,Closed,Low,6/15/2025 22:00,Sophia Balogun,7/7/2025 15:02,Incident,Connection Issues with my Laptop to WhatsApp using ONEIHS,Minor,Information Technology,Workspace Enablement,Connection Issue,IHSTOWERS\bakar.ali
+451107,Closed,High,6/12/2025 13:12,Tunde Aliyu,6/16/2025 10:55,Incident,Network Down in SA,Major,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+450998,Closed,High,6/11/2025 15:54,Tunde Harris,6/18/2025 11:50,Incident,TIME LAG ON CMS,Normal,Information Technology,Business Applications,Other Incident,IHSTOWERS\musa.mora
+449863,Closed,Low,6/5/2025 2:54,Tunde Okeke,6/8/2025 5:15,Incident,No access to applications,Minor,Information Technology,Connectivity Services,Other Incident,IHSTOWERS\muhammad.musa
+449676,Closed,High,6/4/2025 7:36,Usman Anderson,6/11/2025 10:36,Incident,CIV CMS NO COMMUNICATION WITH MTN SIM,Normal,Information Technology,Connectivity Services,Load Balancer F5 Configuration,IHSTOWERS\akapo.leye
+449655,Closed,Low,6/3/2025 17:34,Victoria Anderson,6/13/2025 15:30,Incident,"MTN Internet, OSS and MPLS link service outage in Abuja",Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+449091,Closed,High,6/2/2025 4:07,Victoria Bello,6/3/2025 9:11,Incident,Captive portal not prompting upon connection - Dubai Office,Major,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\bakar.ali
+449014,Closed,High,6/1/2025 8:48,Victoria Harris,6/9/2025 9:30,Incident,Network Issues at Enugu and PHC NOC,Normal,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\musa.mora
+447476,Closed,Low,5/26/2025 11:38,Victoria Okafor,6/5/2025 11:38,Incident,PRTG not Accessible,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\akapo.leye
+447291,Closed,High,5/24/2025 19:49,Zainab Adams,6/2/2025 9:30,Incident,CMS MALFUNCTIONING ,Normal,Information Technology,Business Applications,Application freeze,IHSTOWERS\akapo.leye
+446413,Closed,Low,5/20/2025 8:33,Zainab Allen,5/30/2025 8:33,Incident,VPN - Login Error,Minor,Information Technology,Connectivity Services,VPN Connectivity error,IHSTOWERS\bakar.ali
+446137,Closed,High,5/19/2025 10:05,Zainab Clark,6/2/2025 12:03,Incident,URGENT:  LEPTON Servers -  unresponsiveness and intermittent connectivity issues ,Normal,Information Technology,Connectivity Services,Limited Connectivity,IHSTOWERS\bakar.ali
+445364,Closed,Low,5/14/2025 12:31,Zainab Danjuma,5/26/2025 12:31,Incident,Internet downtime,Minor,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
+444553,Closed,Low,5/9/2025 19:53,Zainab Green,9/10/2025 14:38,Incident,Bloqueio de acesso a link externo do NOC IHS,Minor,Information Technology,IT Security,Users access restrictions on websites or applications.,IHSTOWERS\bakar.ali
+441968,Closed,Low,4/25/2025 21:06,Zainab King,5/26/2025 8:15,Incident,NETACT Application Failure,Minor,Information Technology,Business Applications,Calculation Variance,IHSTOWERS\bakar.ali
+437340,Closed,High,3/29/2025 4:04,Zainab Onyeka,6/25/2025 8:17,Incident,THE INTERNET IS DOWN,Normal,Information Technology,Connectivity Services,Network Downtime,IHSTOWERS\musa.mora
